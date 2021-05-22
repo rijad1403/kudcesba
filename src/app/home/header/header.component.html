@@ -1,3 +1,37 @@
-<p>
-  header works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="openMainMenu()">
+        <ion-icon name="person-outline"></ion-icon>
+        <ion-icon name="chevron-down-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons>
+      <ion-img src="../../assets/logo.png" style="height: 25px;" class="m-auto" [routerLink]="['home']"></ion-img>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="search-outline"></ion-icon>
+      </ion-button>
+      <ion-button>
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-menu menuId="main-menu" contentId="main">
+  <ion-content>
+    <ion-list>
+      <ion-item (click)="closeMainMenu()">
+        <ion-nav-link [routerLink]="['home']" routerLinkActive="router-link-active">Početna</ion-nav-link>
+      </ion-item>
+      <ion-item (click)="closeMainMenu()">
+        <ion-nav-link [routerLink]="['login']" routerLinkActive="router-link-active">Prijava</ion-nav-link>
+      </ion-item>
+      <ion-item (click)="closeMainMenu()">
+        <ion-nav-link [routerLink]="['register']" routerLinkActive="router-link-active">Registracija</ion-nav-link>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>

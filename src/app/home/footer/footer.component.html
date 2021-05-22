@@ -1,3 +1,14 @@
-<p>
-  footer works!
-</p>
+<ion-footer>
+  <ion-list lines="none">
+    <ion-item>
+      <ion-nav-link [routerLink]="['home']" routerLinkActive="router-link-active">O nama
+      </ion-nav-link>
+    </ion-item>
+    <ion-item>
+      <span [routerLink]="['home']" routerLinkActive="router-link-active">FAQ</span>
+    </ion-item>
+    <ion-item>
+      <ion-nav-link [routerLink]="['home']" routerLinkActive="router-link-active">contact</ion-nav-link>
+    </ion-item>
+  </ion-list>
+</ion-footer>
