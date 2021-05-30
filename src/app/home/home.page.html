@@ -1,12 +1,8 @@
-<ion-header>
-  <ion-toolbar>
-  </ion-toolbar>
-</ion-header>
 <ion-content>
-  <div class="hero-section">
-
-    <h2 class="text-center">Tvoja vožnja. Tvoj izbor.</h2>
-
+  <div class="hero-section ion-padding">
+    <ion-text class="ion-text-center">
+      <h2 class="fw-bold text-white">Tvoj prijevoz. Tvoj izbor.</h2>
+    </ion-text>
     <ion-card class="from-to-container">
       <ion-card-content>
         <ion-item>
@@ -19,10 +15,16 @@
           <ion-grid>
             <ion-row>
               <ion-col>
-                <ion-datetime displayFormat="DD MM YYYY" placeholder="Izaberi datum"></ion-datetime>
+                <ion-datetime
+                  displayFormat="DD MM YYYY"
+                  placeholder="Izaberi datum"
+                ></ion-datetime>
               </ion-col>
               <ion-col>
-                <ion-datetime displayFormat="DD MM YYYY" placeholder="Izaberi datum"></ion-datetime>
+                <ion-datetime
+                  displayFormat="DD MM YYYY"
+                  placeholder="Izaberi datum"
+                ></ion-datetime>
               </ion-col>
             </ion-row>
           </ion-grid>
@@ -34,4 +36,39 @@
     </ion-card>
   </div>
 
+  <div class="ion-padding mt-5">
+    <ion-text class="ion-text-center">
+      <h2 class="fw-bold">Kamo voziš?</h2>
+    </ion-text>
+    <ion-text>
+      <p>Neka ovo bude tvoje najmanje skupo putovanje u povijesti.</p>
+    </ion-text>
+    <ion-button shape="round" fill="solid" expand="block"
+      >Ponudi prijevoz
+    </ion-button>
+  </div>
+
+  <div class="ion-padding">
+    <ion-text class="ion-text-center">
+      <h2 class="fw-bold">Kamo se želiš odvesti?</h2>
+    </ion-text>
+    <ion-list>
+      <ion-item detail>
+        Zagreb
+        <ion-icon name="arrow-forward-outline" size="small"></ion-icon>
+        Split
+        <ion-note slot="end">On</ion-note>
+      </ion-item>
+      <ion-item detail>
+        Zagreb
+        <ion-icon name="arrow-forward-outline" size="small"></ion-icon>
+        Split
+      </ion-item>
+      <ion-item detail>
+        Zagreb
+        <ion-icon name="arrow-forward-outline" size="small"></ion-icon>
+        Split
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>

@@ -3,16 +3,16 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { LoginPageRoutingModule } from './login-routing.module';
+import { EmailPageRoutingModule } from './email-routing.module';
 
-import { LoginPage } from './login.page';
+import { EmailPage } from './email.page';
 
 @NgModule({
   imports: [
     FormsModule,
     IonicModule,
-    LoginPageRoutingModule
+    EmailPageRoutingModule
   ],
-  declarations: [LoginPage]
+  declarations: [EmailPage]
 })
-export class LoginPageModule {}
+export class EmailPageModule {}

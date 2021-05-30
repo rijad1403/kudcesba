@@ -1,3 +1,25 @@
-<ion-content>
-  login
-</ion-content>
+<div class="ion-padding">
+  <h2>Na koji se način želiš prijaviti?</h2>
+  <ion-list>
+    <ion-item>
+      <ion-nav-link>Nastavi s Facebookom</ion-nav-link>
+    </ion-item>
+    <ion-item>
+      <ion-nav-link
+        [routerLink]="['email']"
+        routerLinkActive="router-link-active"
+        >Nastavi s e-poštom</ion-nav-link
+      >
+    </ion-item>
+    <ion-item>
+      <ion-text class="me-1"> Još nisi član? </ion-text>
+      <ion-text
+        [routerLink]="['/register']"
+        routerLinkActive="router-link-active"
+        color="primary"
+      >
+        Registruj se
+      </ion-text>
+    </ion-item>
+  </ion-list>
+</div>

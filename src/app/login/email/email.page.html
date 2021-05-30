@@ -1,0 +1,27 @@
+<ion-content class="ion-padding">
+  <h2>Tvoj email i lozinka?</h2>
+  <form action="">
+    <ion-item>
+      <ion-input type="text" placeholder="Ime" clearInput></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" placeholder="Prezime" clearInput></ion-input>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label>Zapamti me</ion-label>
+      <ion-checkbox></ion-checkbox>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-text
+        [routerLink]="['/login/password-forgot']"
+        routerLinkActive="router-link-active"
+        color="primary"
+      >
+        Zaboravljena lozinka
+      </ion-text>
+    </ion-item>
+    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+      <ion-fab-button>Prijava</ion-fab-button>
+    </ion-fab>
+  </form>
+</ion-content>

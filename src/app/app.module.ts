@@ -7,8 +7,8 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MainMenuComponent } from './main-menu/main-menu.component';
-import { HeaderComponent } from './home/header/header.component';
-import { FooterComponent } from './home/footer/footer.component';
+import { HeaderComponent } from './partials/header/header.component';
+import { FooterComponent } from './partials/footer/footer.component';
 
 @NgModule({
   declarations: [AppComponent, MainMenuComponent, HeaderComponent, FooterComponent],
