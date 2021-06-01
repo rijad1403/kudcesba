@@ -8,3 +8,12 @@
   position: relative;
   top: 100px;
 }
+
+.drives-container,
+.drives-container ion-list {
+  background-color: var(--ion-color-dark);
+}
+
+.drives-container ion-item {
+  --border-radius: 1rem;
+}
