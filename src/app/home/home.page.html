@@ -88,15 +88,61 @@
               Od bilo gdje.
             </h2>
           </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let text of helpTexts, let i = index">
+        <ion-col>
           <ion-text class="ion-text-center">
-            <h4>1.Ideš nekamo?</h4>
+            <h4>{{i+1}}. {{text.heading}}</h4>
           </ion-text>
           <ion-text class="ion-text-center" color="medium">
-            <p>
-              Brzo ćeš pronaći ljude koji prolaze kraj tebe i putuju u tvom
-              pravcu zato što imaš pristup milijunima putovanja.
-            </p>
+            <p>{{text.body}}</p>
           </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div class="ion-padding">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-text class="ion-text-center">
+            <h2 class="fw-bold">3 razloga zbog kojih ćeš voljeti Kudces.ba</h2>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let text of reasonsTexts, let i = index">
+        <ion-col>
+          <ion-text>
+            <ion-icon name="{{text.icon}}" size="large" class="d-block m-auto">
+            </ion-icon>
+          </ion-text>
+          <ion-text class="ion-text-center">
+            <h4>{{text.heading}}</h4>
+          </ion-text>
+          <ion-text class="ion-text-center" color="medium">
+            <p>{{text.body}}</p>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div class="ion-padding">
+    <ion-grid>
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-button color="primary" shape="round"
+            >Pronađi prijevoz
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-button color="primary" shape="round" fill="outline"
+            >Ponudi prijevoz
+          </ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
