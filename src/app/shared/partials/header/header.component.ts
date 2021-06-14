@@ -7,10 +7,9 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  constructor(private menu: MenuController) {}
 
-  constructor(private menu: MenuController) { }
-
-  ngOnInit() { }
+  ngOnInit() {}
 
   openMainMenu() {
     this.menu.enable(true, 'main-menu');
@@ -20,5 +19,4 @@ export class HeaderComponent implements OnInit {
   closeMainMenu() {
     this.menu.close();
   }
-
 }

@@ -15,16 +15,10 @@
           <ion-grid>
             <ion-row>
               <ion-col>
-                <ion-datetime
-                  displayFormat="DD MM YYYY"
-                  placeholder="Izaberi datum"
-                ></ion-datetime>
+                <ion-datetime displayFormat="DD MM YYYY" placeholder="Izaberi datum"></ion-datetime>
               </ion-col>
               <ion-col>
-                <ion-datetime
-                  displayFormat="DD MM YYYY"
-                  placeholder="Izaberi datum"
-                ></ion-datetime>
+                <ion-datetime displayFormat="DD MM YYYY" placeholder="Izaberi datum"></ion-datetime>
               </ion-col>
             </ion-row>
           </ion-grid>
@@ -43,38 +37,12 @@
     <ion-text>
       <p>Neka ovo bude tvoje najmanje skupo putovanje u povijesti.</p>
     </ion-text>
-    <ion-button shape="round" fill="solid" expand="block"
-      >Ponudi prijevoz
+    <ion-button shape="round" fill="solid" expand="block">Ponudi prijevoz
     </ion-button>
   </div>
 
   <div class="ion-padding drives-container">
-    <ion-text class="ion-text-center" color="light">
-      <h2 class="fw-bold">Kamo se želiš odvesti?</h2>
-    </ion-text>
-    <ion-list lines="none">
-      <ion-item detail class="ion-padding test">
-        Zagreb
-        <ion-icon name="arrow-forward-outline" size="small"></ion-icon>
-        Split
-        <ion-note slot="end">90km</ion-note>
-      </ion-item>
-      <ion-item detail class="ion-padding">
-        Zagreb
-        <ion-icon name="arrow-forward-outline" size="small"></ion-icon>
-        Split
-        <ion-note slot="end">90km</ion-note>
-      </ion-item>
-      <ion-item detail class="ion-padding">
-        Zagreb
-        <ion-icon name="arrow-forward-outline" size="small"></ion-icon>
-        Split
-        <ion-note slot="end">90km</ion-note>
-      </ion-item>
-    </ion-list>
-    <ion-text color="primary" class="ion-text-end">
-      <p>Pogledaj naše najpopularnije prijevoze</p>
-    </ion-text>
+    <app-common-drives></app-common-drives>
   </div>
 
   <div class="ion-padding">
@@ -133,18 +101,17 @@
     <ion-grid>
       <ion-row>
         <ion-col class="ion-text-center">
-          <ion-button color="primary" shape="round"
-            >Pronađi prijevoz
+          <ion-button routerLink="/drives-search" color="primary" shape="round">Pronađi prijevoz
           </ion-button>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col class="ion-text-center">
-          <ion-button color="primary" shape="round" fill="outline"
-            >Ponudi prijevoz
+          <ion-button color="primary" shape="round" fill="outline">Ponudi prijevoz
           </ion-button>
         </ion-col>
       </ion-row>
     </ion-grid>
   </div>
+  <app-footer></app-footer>
 </ion-content>

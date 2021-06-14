@@ -1,5 +1,5 @@
 <ion-content class="ion-padding">
-  <h2>Na koji se način želiš prijaviti?</h2>
+  <h2>Na koji se način želiš registrirati?</h2>
   <ion-list>
     <ion-item>
       <ion-text>Nastavi s Facebookom</ion-text>
@@ -11,11 +11,7 @@
     </ion-item>
     <ion-item>
       <ion-text class="me-1"> Već si član? </ion-text>
-      <ion-text
-        [routerLink]="['/login/email']"
-        routerLinkActive="router-link-active"
-        color="primary"
-      >
+      <ion-text [routerLink]="['/login/email']" routerLinkActive="router-link-active" color="primary">
         Prijavi se
       </ion-text>
     </ion-item>

@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { MainMenuComponent } from './main-menu.component';
+import { CommonDrivesComponent } from './common-drives.component';
 
-describe('MainMenuComponent', () => {
-  let component: MainMenuComponent;
-  let fixture: ComponentFixture<MainMenuComponent>;
+describe('CommonDrivesComponent', () => {
+  let component: CommonDrivesComponent;
+  let fixture: ComponentFixture<CommonDrivesComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ MainMenuComponent ],
+      declarations: [ CommonDrivesComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(MainMenuComponent);
+    fixture = TestBed.createComponent(CommonDrivesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
