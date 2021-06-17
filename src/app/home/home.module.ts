@@ -6,7 +6,7 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { CommonDrivesComponent } from '../common-drives/common-drives.component';
-import { SharedModule } from '../shared/shared.module';
+import { PartialsModule } from '../partials/partials.module';
 
 @NgModule({
   imports: [
@@ -14,7 +14,7 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    SharedModule,
+    PartialsModule,
   ],
   declarations: [HomePage, CommonDrivesComponent],
 })

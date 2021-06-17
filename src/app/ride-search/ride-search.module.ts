@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { DrivesSearchPageRoutingModule } from './drives-search-routing.module';
+import { RideSearchPageRoutingModule } from './ride-search-routing.module';
 
-import { DrivesSearchPage } from './drives-search.page';
+import { RideSearchPage } from './ride-search.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DrivesSearchPageRoutingModule
+    RideSearchPageRoutingModule,
   ],
-  declarations: [DrivesSearchPage]
+  declarations: [RideSearchPage],
 })
 export class DrivesSearchPageModule {}

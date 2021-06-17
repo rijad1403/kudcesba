@@ -1,0 +1,14 @@
+<div>
+  <ion-list lines="none">
+    <ng-container *ngFor="let group of footerPages">
+      <ion-header>
+        <ion-label class="fw-bold">{{ group.header }}</ion-label>
+      </ion-header>
+      <ion-item *ngFor="let page of group.pages">
+        <ion-label color="light">
+          {{ page.title }}
+        </ion-label>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</div>

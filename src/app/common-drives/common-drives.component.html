@@ -2,25 +2,15 @@
   <h2 class="fw-bold">Kamo se želiš odvesti?</h2>
 </ion-text>
 <ion-list lines="none">
-  <ion-item detail class="ion-padding test">
-    Zagreb
+  <ion-item detail class="ion-padding test" *ngFor="let drive of commonDrives"
+    routerLink="/ride-share/{{drive.start}}/{{drive.destination}}" routerLinkActive="router-link-active">
+    {{drive.start}}
     <ion-icon name="arrow-forward-outline" size="small"></ion-icon>
-    Split
-    <ion-note slot="end">90km</ion-note>
-  </ion-item>
-  <ion-item detail class="ion-padding">
-    Zagreb
-    <ion-icon name="arrow-forward-outline" size="small"></ion-icon>
-    Split
-    <ion-note slot="end">90km</ion-note>
-  </ion-item>
-  <ion-item detail class="ion-padding">
-    Zagreb
-    <ion-icon name="arrow-forward-outline" size="small"></ion-icon>
-    Split
-    <ion-note slot="end">90km</ion-note>
+    {{drive.destination}}
+    <ion-note slot="end">{{drive.distance}} KM</ion-note>
   </ion-item>
 </ion-list>
-<ion-text color="primary" class="ion-text-end">
-  <p>Pogledaj naše najpopularnije prijevoze</p>
+<ion-text color="secondary" class="ion-text-end" (click)="showDrives()">
+  <p *ngIf="showAllDrives">Pogledaj naše najpopularnije prijevoze</p>
+  <p *ngIf="!showAllDrives">Pogledaj manje prijevoza</p>
 </ion-text>

@@ -23,11 +23,23 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'drives-search',
+    path: 'ride-search',
     loadChildren: () =>
-      import('./drives-search/drives-search.module').then(
+      import('./ride-search/ride-search.module').then(
         (m) => m.DrivesSearchPageModule
       ),
+  },
+  {
+    path: 'ride-share/:start/:destination',
+    loadChildren: () =>
+      import('./ride-share/ride-share.module').then(
+        (m) => m.DrivesSharePageModule
+      ),
+  },
+  {
+    path: 'ride-info/:rideId/:start/:destination',
+    loadChildren: () =>
+      import('./ride-info/ride-info.module').then((m) => m.RideInfoPageModule),
   },
 ];
 
