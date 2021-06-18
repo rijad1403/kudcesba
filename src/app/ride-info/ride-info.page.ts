@@ -16,10 +16,7 @@ export class RideInfoPage implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      console.log(params);
-
       this.ride = this.rideService.getById(+params.rideId);
-      console.log(this.ride);
     });
   }
 }

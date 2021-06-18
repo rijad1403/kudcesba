@@ -8,6 +8,7 @@ export class RideService {
     {
       id: 1,
       driver: {
+        id: 1,
         name: 'Mujo Mujić',
         image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjx4UieqE-Bepuju7kdcIqS8OWWqaxW3K90A&usqp=CAU',
@@ -38,6 +39,7 @@ export class RideService {
     {
       id: 2,
       driver: {
+        id: 2,
         name: 'Suljo Suljić',
         image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4lvcb27aJRUsvtQwAasjUB9z7Wf-XaVwr5w&usqp=CAU',
@@ -52,6 +54,7 @@ export class RideService {
     {
       id: 3,
       driver: {
+        id: 3,
         name: 'Alaga Alagić',
         image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgIUF7SE6CROioPfFm3jxwN5cPMxD_MobRdw&usqp=CAU',

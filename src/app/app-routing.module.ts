@@ -41,6 +41,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./ride-info/ride-info.module').then((m) => m.RideInfoPageModule),
   },
+  {
+    path: 'user/:userId',
+    loadChildren: () =>
+      import('./user/user.module').then((m) => m.UserPageModule),
+  },
 ];
 
 @NgModule({

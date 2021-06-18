@@ -13,51 +13,32 @@ export class FooterComponent implements OnInit {
   ngOnInit() {
     this.footerPages = [
       {
-        header: 'Kudćeš.ba',
-        pages: [
-          {
-            title: 'O nama',
-            link: 'o-nama',
-          },
-          {
-            title: 'FAQ',
-            link: 'faq',
-          },
-          {
-            title: 'Kontakt',
-            link: 'contact',
-          },
-        ],
+        title: 'O nama',
+        link: 'o-nama',
       },
       {
-        header: 'Sigurnost',
-        pages: [
-          {
-            title: 'Privatnost podataka',
-            link: 'privacy-policy',
-          },
-          {
-            title: 'Tačnost podataka',
-            link: 'data-validation',
-          },
-        ],
+        title: 'FAQ',
+        link: 'faq',
       },
       {
-        header: 'Podrška korisnicima',
-        pages: [
-          {
-            title: 'Kako postaviti oglas',
-            link: 'new-advertisement-help',
-          },
-          {
-            title: 'Kako brzo pronaći vožnju',
-            link: 'find-drive-help',
-          },
-          {
-            title: 'Blog',
-            link: 'blog',
-          },
-        ],
+        title: 'Kontakt',
+        link: 'contact',
+      },
+      {
+        title: 'Privatnost podataka',
+        link: 'privacy-policy',
+      },
+      {
+        title: 'Kako postaviti oglas',
+        link: 'new-advertisement-help',
+      },
+      {
+        title: 'Kako brzo pronaći vožnju',
+        link: 'find-drive-help',
+      },
+      {
+        title: 'Blog',
+        link: 'blog',
       },
     ];
   }

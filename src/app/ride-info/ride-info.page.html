@@ -54,7 +54,7 @@
     </ion-note>
   </ion-item>
 
-  <ion-item class="mb-4" detail>
+  <ion-item class="mb-4" routerLink="/user/{{ride.driver.id}}" detail>
     <ion-avatar slot="end">
       <img src="{{ride.driver.image}}">
     </ion-avatar>
@@ -103,7 +103,7 @@
     </ion-item>
   </ion-list>
 
-  <ion-item class="ion-text-center">
+  <ion-item class="ion-text-center" lines="none">
     <ion-button color="secondary" shape="round" class="d-block m-auto">Nastavi
     </ion-button>
   </ion-item>

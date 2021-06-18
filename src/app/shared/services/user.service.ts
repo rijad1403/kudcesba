@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class DriverService {
-  drivers = [
+export class UserService {
+  users = [
     {
       id: 1,
       name: 'Mujo Mujic',
@@ -29,5 +29,11 @@ export class DriverService {
 
   constructor() {}
 
-  getAll() {}
+  getAll() {
+    return this.users;
+  }
+
+  getByID(userId: number) {
+    return this.users.find((user) => user.id === userId);
+  }
 }
