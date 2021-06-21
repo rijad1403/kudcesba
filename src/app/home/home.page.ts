@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RideService } from '../shared/services/ride.service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ export class HomePage implements OnInit {
   helpTexts = [];
   reasonsTexts = [];
 
-  constructor() {}
+  constructor(private rideService: RideService) {}
 
   ngOnInit() {
     this.helpTexts = [
@@ -44,5 +45,12 @@ export class HomePage implements OnInit {
         icon: 'location-outline',
       },
     ];
+  }
+
+  getTestRide(){
+    this.rideService.getAllWithFilters(20, 1, "id", "Bihać", "Sarajevo", "2021-06-16").subscribe(data=>{
+      console.log(data);
+      
+    })
   }
 }
