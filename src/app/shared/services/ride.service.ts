@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IRide } from '../models/ride/ride';
 import { EnvironmentconfigService } from './environmentconfig.service';
 
 @Injectable({
@@ -84,11 +85,11 @@ export class RideService {
     return this.rides.find((ride) => ride.id === rideId);
   }
 
-  getAllWithFilters(perPage: number, page: number, sort: string, destination: string, origin: string, date:string): Observable<any[]>{
-    return this.httpClient.get<any[]>(this.config.apiUrl + `/drives?per-page=${perPage}&page=${page}$sort=${sort}&destination=${destination}&origin=${origin}&date=${date}`);
+  getAllWithFilters(perPage: number, page: number, sort: string, destination: string, origin: string, date:string): Observable<IRide[]>{
+    return this.httpClient.get<IRide[]>(this.config.apiUrl + `/drives?per-page=${perPage}&page=${page}$sort=${sort}&destination=${destination}&origin=${origin}&date=${date}`);
   }
 
-  get(id: number): Observable<any[]>{
-    return this.httpClient.get<any[]>(this.config.apiUrl + `/drives/${id}`);
+  get(id: number): Observable<IRide>{
+    return this.httpClient.get<IRide>(this.config.apiUrl + `/drives/${id}`);
   }
 }
