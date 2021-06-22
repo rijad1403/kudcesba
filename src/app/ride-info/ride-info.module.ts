@@ -8,13 +8,16 @@ import { RideInfoPageRoutingModule } from './ride-info-routing.module';
 
 import { RideInfoPage } from './ride-info.page';
 
+import { PartialsModule } from '../partials/partials.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RideInfoPageRoutingModule
+    RideInfoPageRoutingModule,
+    PartialsModule,
   ],
-  declarations: [RideInfoPage]
+  declarations: [RideInfoPage],
 })
 export class RideInfoPageModule {}

@@ -7,9 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { RideSharePageRoutingModule } from './ride-share-routing.module';
 
 import { RideSharePage } from './ride-share.page';
+import { PartialsModule } from '../partials/partials.module';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, RideSharePageRoutingModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    RideSharePageRoutingModule,
+    PartialsModule,
+  ],
   declarations: [RideSharePage],
 })
 export class DrivesSharePageModule {}

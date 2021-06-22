@@ -1,7 +1,82 @@
-<ion-content class="ion-padding">
-  <ion-item lines="none">
+<ion-content>
+
+  <ion-item class="mt-3" lines="none">
     <ion-avatar class="m-auto d-block user-img">
       <img src="{{user.image}}">
     </ion-avatar>
   </ion-item>
+  <ion-item lines="none">
+    <h2 class="text-dark fw-bold ion-text-center w-100">{{user.name}}</h2>
+  </ion-item>
+  <ion-item lines="none">
+    <p class="ion-text-center w-100">{{user.age}} godine</p>
+  </ion-item>
+  <ion-item lines="none">
+    <p class="fw-bold">
+      Razina iskustva: {{user.experience}}
+    </p>
+  </ion-item>
+  <ion-item lines="none">
+    <small class="fst-italic">
+      {{user.about}}
+    </small>
+  </ion-item>
+
+  <ion-item class="mt-4" routerLink="/user/{{user.id}}" color="medium" lines="none" detail>
+    <ion-icon name="star" color="main" class="me-1"></ion-icon>
+    <ion-label>
+      Ocjene {{user.rating}} / 5 - 26
+    </ion-label>
+  </ion-item>
+
+  <ion-list>
+    <ion-item lines="none">
+      <ion-icon name="logo-no-smoking"></ion-icon>
+      <ion-label class="ms-2">
+        Nije dozvoljeno pušenje
+      </ion-label>
+    </ion-item>
+    <ion-item lines="bottom">
+      <ion-icon name="musical-notes"></ion-icon>
+      <ion-label class="ms-2">
+        Dozvoljena muzika
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list class="mt-3">
+    <ion-item lines="none">
+      <ion-icon name="checkmark" color="success"></ion-icon>
+      <ion-label class="ms-2">
+        Broj telefona potvrđen
+      </ion-label>
+    </ion-item>
+    <ion-item lines="bottom">
+      <ion-icon name="checkmark" color="success"></ion-icon>
+      <ion-label class="ms-2">
+        Email potvrđen
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list class="mt-3" lines="none">
+    <ion-item>
+      <ion-text>
+        Član od: 2018
+
+      </ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-text>
+        1 vožnja objavljena
+
+      </ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-text color="main">
+        Prijavi ovoga korisnika
+      </ion-text>
+    </ion-item>
+  </ion-list>
+
 </ion-content>

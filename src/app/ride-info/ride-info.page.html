@@ -1,4 +1,4 @@
-<ion-content class="ion-padding">
+<ion-content>
 
   <ion-item lines="none">
     <ion-text>
@@ -69,8 +69,8 @@
 
   <ion-list lines="none">
     <ion-item class="mb-2">
-      <ion-icon name="chatbubbles-outline" color="secondary"></ion-icon>
-      <ion-label color="secondary" class="ms-2">
+      <ion-icon name="chatbubbles-outline" color="main"></ion-icon>
+      <ion-label color="main" class="ms-2">
         Javi se {{ride.driver.name}}
       </ion-label>
     </ion-item>
@@ -93,7 +93,7 @@
     <ion-list-header lines="inset">
       <h2 class="fw-bold">Putnici</h2>
     </ion-list-header>
-    <ion-item lines="none" detail *ngFor="let passenger of ride.passengers">
+    <ion-item lines="none" detail *ngFor="let passenger of ride.passengers" routerLink="/user/{{passenger.id}}">
       <ion-label>
         <h3 class="text-dark ">{{passenger.name}}</h3>
       </ion-label>
@@ -104,8 +104,10 @@
   </ion-list>
 
   <ion-item class="ion-text-center" lines="none">
-    <ion-button color="secondary" shape="round" class="d-block m-auto">Nastavi
+    <ion-button color="main" shape="round" class="d-block m-auto">Nastavi
     </ion-button>
   </ion-item>
+
+  <app-footer></app-footer>
 
 </ion-content>
