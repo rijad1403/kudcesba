@@ -1,0 +1,25 @@
+<ion-content class="ion-padding">
+  <ion-list lines="none">
+    <ion-item>
+      <h2 class="fw-bold">
+        {{type == 'start' ? 'Otkud polaziš?' : 'Gdje putuješ?'}}
+      </h2>
+    </ion-item>
+    <ion-item>
+      <ion-searchbar [(ngModel)]="place" clearIcon></ion-searchbar>
+    </ion-item>
+    <ion-item (click)="dismissAndSendData()">
+      <ion-icon class="me-2" name="location-outline" color="main"></ion-icon>
+      <ion-text color="main">
+        {{type == 'start' ? 'Odaberi polazište' : 'Odaberi odredište'}}
+      </ion-text>
+    </ion-item>
+    <ion-item (click)="dismiss()">
+      <ion-icon class="me-2" name="chevron-back-outline" color="main"></ion-icon>
+      <ion-text color="main">
+        Idi nazad
+      </ion-text>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

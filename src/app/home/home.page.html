@@ -5,23 +5,23 @@
     </ion-text>
     <ion-card class="from-to-container">
       <ion-card-content>
-        <ion-item>
-          <ion-input placeholder="Putujem iz...."></ion-input>
+        <ion-item detail (click)="presentModal('start')">
+          <ion-icon class="me-2" name="location-outline" color="secondary"></ion-icon>
+          <ion-input type="text" placeholder="Polazište" value="{{start}}" readonly>
+          </ion-input>
+        </ion-item>
+        <ion-item detail (click)="presentModal('dest')">
+          <ion-icon class="me-2" name="location-outline" color="main"></ion-icon>
+          <ion-input type="text" placeholder="Odredište" value="{{destination}}" readonly>
+          </ion-input>
         </ion-item>
         <ion-item>
-          <ion-input placeholder="Putujem za...."></ion-input>
+          <ion-icon class="me-2" name="calendar-outline" color="main"></ion-icon>
+          <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Datum"></ion-datetime>
         </ion-item>
         <ion-item>
-          <ion-grid>
-            <ion-row>
-              <ion-col>
-                <ion-datetime displayFormat="DD MM YYYY" placeholder="Izaberi datum"></ion-datetime>
-              </ion-col>
-              <ion-col>
-                <ion-datetime displayFormat="DD MM YYYY" placeholder="Izaberi datum"></ion-datetime>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
+          <ion-icon class="me-2" name="people-outline" color="main"></ion-icon>
+          <ion-input type="number" placeholder="Broj putnika" min="1"></ion-input>
         </ion-item>
         <ion-button expand="block" (click)="getTestRide()" color="main">
           <ion-icon name="search-outline"></ion-icon>
@@ -37,7 +37,7 @@
     <ion-text>
       <p>Neka ovo bude tvoje najmanje skupo putovanje u povijesti.</p>
     </ion-text>
-    <ion-button shape="round" fill="solid" expand="block" color="main">Ponudi prijevoz
+    <ion-button shape="round" fill="solid" expand="block" color="main" routerLink="/ride-publish">Ponudi prijevoz
     </ion-button>
   </div>
 

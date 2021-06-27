@@ -14,6 +14,18 @@ const routes: Routes = [
   {
     path: 'name',
     loadChildren: () => import('./name/name.module').then( m => m.NamePageModule)
+  },
+  {
+    path: 'birthdate',
+    loadChildren: () => import('./birthdate/birthdate.module').then( m => m.BirthdatePageModule)
+  },
+  {
+    path: 'gender',
+    loadChildren: () => import('./gender/gender.module').then( m => m.GenderPageModule)
+  },
+  {
+    path: 'password',
+    loadChildren: () => import('./password/password.module').then( m => m.PasswordPageModule)
   }
 
 ];

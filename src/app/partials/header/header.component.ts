@@ -7,13 +7,20 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private menu: MenuController) {}
+  user: any;
 
+  constructor(private menu: MenuController) {}
   ngOnInit() {}
 
   openMainMenu() {
-    this.menu.enable(true, 'main-menu');
-    this.menu.open('main-menu');
+    this.user = JSON.parse(localStorage.getItem('user'));
+    if (this.user) {
+      this.menu.enable(true, 'main-menu-auth');
+      this.menu.open('main-menu-auth');
+    } else {
+      this.menu.enable(true, 'main-menu');
+      this.menu.open('main-menu');
+    }
   }
 
   closeMainMenu() {

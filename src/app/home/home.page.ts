@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { PlacesSearchModalComponent } from '../partials/places-search-modal/places-search-modal.component';
 import { RideService } from '../shared/services/ride.service';
 
 @Component({
@@ -7,12 +9,18 @@ import { RideService } from '../shared/services/ride.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+  start = '';
+  destination = '';
   helpTexts = [];
   reasonsTexts = [];
 
-  constructor(private rideService: RideService) {}
+  constructor(
+    private rideService: RideService,
+    private modalController: ModalController
+  ) {}
 
   ngOnInit() {
+    this.getTestRide();
     this.helpTexts = [
       {
         heading: 'Ideš nekamo?',
@@ -47,10 +55,27 @@ export class HomePage implements OnInit {
     ];
   }
 
-  getTestRide(){
-    this.rideService.getAllWithFilters(20, 1, "id", "Bihać", "Sarajevo", "2021-06-16").subscribe(data=>{
-      console.log(data);
-      
-    })
+  async presentModal(placeType: string) {
+    const modal = await this.modalController.create({
+      component: PlacesSearchModalComponent,
+      componentProps: {
+        type: placeType,
+      },
+    });
+    await modal.present();
+    const data = (await modal.onDidDismiss()).data;
+    if (data.type === 'start' && data.place) {
+      this.start = data.place;
+    } else if (data.type === 'dest' && data.place) {
+      this.destination = data.place;
+    }
+  }
+
+  getTestRide() {
+    this.rideService
+      .getAllWithFilters(20, 1, 'id', 'Bihać', 'Sarajevo', '2021-06-16')
+      .subscribe((data) => {
+        console.log(data);
+      });
   }
 }

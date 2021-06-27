@@ -20,7 +20,7 @@ export class CommonDrivesComponent implements OnInit {
       },
       {
         start: 'Karlovac',
-        destination: 'šibenik',
+        destination: 'Šibenik',
         distance: '100',
       },
       {

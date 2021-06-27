@@ -5,17 +5,20 @@ import { IPlace } from '../models/place/place';
 import { EnvironmentconfigService } from './environmentconfig.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PlacesService {
-
   private config: any;
-  constructor(private httpClient: HttpClient,
-    private envConfigService: EnvironmentconfigService) {
-      this.config = envConfigService.getConfig();
-    }
+  constructor(
+    private httpClient: HttpClient,
+    private envConfigService: EnvironmentconfigService
+  ) {
+    this.config = envConfigService.getConfig();
+  }
 
-  searchByName(name:string): Observable<IPlace> {
-    return this.httpClient.get<IPlace>(this.config.apiUrl + `/places?sort=name&name=${name}`);
+  searchByName(name: string): Observable<IPlace> {
+    return this.httpClient.get<IPlace>(
+      this.config.apiUrl + `/places?sort=name&name=${name}`
+    );
   }
 }

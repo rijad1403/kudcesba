@@ -1,14 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { RouteReuseStrategy } from '@angular/router';
-
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PartialsModule } from './partials/partials.module';
 import { EnvironmentconfigService } from './shared/services/environmentconfig.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 const appInitializerFunction = (envConfigService: EnvironmentconfigService) => {
   return () => {
@@ -24,7 +23,8 @@ const appInitializerFunction = (envConfigService: EnvironmentconfigService) => {
     IonicModule.forRoot(),
     AppRoutingModule,
     PartialsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
@@ -32,8 +32,8 @@ const appInitializerFunction = (envConfigService: EnvironmentconfigService) => {
       provide: APP_INITIALIZER,
       useFactory: appInitializerFunction,
       deps: [EnvironmentconfigService],
-      multi: true
-    }
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
   exports: [],

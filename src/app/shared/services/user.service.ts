@@ -41,6 +41,8 @@ export class UserService {
 
   constructor() {}
 
+  login(username: string, password: string) {}
+
   getAll() {
     return this.users;
   }
