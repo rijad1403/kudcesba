@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PartialsModule } from './partials/partials.module';
 import { EnvironmentconfigService } from './shared/services/environmentconfig.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { AuthInterceptor } from './shared/guards/auth-interceptor';
 
 const appInitializerFunction = (envConfigService: EnvironmentconfigService) => {
   return () => {
@@ -34,6 +35,7 @@ const appInitializerFunction = (envConfigService: EnvironmentconfigService) => {
       deps: [EnvironmentconfigService],
       multi: true,
     },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
   exports: [],

@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { EnvironmentconfigService } from './environmentconfig.service';
 
 @Injectable({
   providedIn: 'root',
@@ -39,7 +42,18 @@ export class UserService {
     },
   ];
 
-  constructor() {}
+  private config: any;
+  constructor(
+    private httpClient: HttpClient,
+    private envConfigService: EnvironmentconfigService
+  ) {
+    this.config = envConfigService.getConfig();
+  }
+
+  getMyProfile(): Observable<any> {
+    return this.httpClient.get<any>(
+      this.config.apiUrl + `/user/data` );
+  }
 
   login(username: string, password: string) {}
 

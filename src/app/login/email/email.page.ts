@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { LoginService } from 'src/app/shared/services/login.service';
 
 @Component({
   selector: 'app-email',
@@ -13,7 +14,8 @@ export class EmailPage implements OnInit {
 
   constructor(
     private router: Router,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private loginService: LoginService
   ) {}
 
   ngOnInit() {
@@ -24,20 +26,20 @@ export class EmailPage implements OnInit {
   }
 
   async login() {
-    if (
-      this.loginForm.value.email === 'user' &&
-      this.loginForm.value.password === '12345'
-    ) {
-      const user = { email: 'user', password: '12345' };
-      localStorage.setItem('user', JSON.stringify(user));
-      this.router.navigate(['/home']);
-    } else {
-      const toast = await this.toastController.create({
-        message: 'Unešeni podaci nisu validni.',
-        duration: 5000,
-        color: 'danger',
-      });
-      toast.present();
-    }
+      const user = { username: this.loginForm.value.email, password: this.loginForm.value.password };
+
+      this.loginService.login(user).subscribe(data=>{
+        sessionStorage.setItem('currentUser', JSON.stringify(user));
+        sessionStorage.setItem('token', data.auth_key);
+        this.router.navigate(['/home']);
+      }, async error=>{
+        const toast = await this.toastController.create({
+          message: 'Unešeni podaci nisu validni.',
+          duration: 5000,
+          color: 'danger',
+        });
+        toast.present();
+      })
+    
   }
 }
