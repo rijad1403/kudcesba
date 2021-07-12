@@ -1,17 +1,19 @@
-<ion-content class="ion-padding">
-  <h2 class="fw-bold">Na koji se način želiš registrirati?</h2>
+<ion-content>
   <ion-list>
-    <ion-item>
-      <ion-text>Nastavi s Facebookom</ion-text>
+    <ion-item lines="none">
+      <h2 class="fw-bold">Na koji se način želiš registrirati?</h2>
     </ion-item>
-    <ion-item>
-      <ion-text routerLink="email" routerLinkActive="router-link-active">
+    <!-- <ion-item>
+      <ion-text>Nastavi s Facebookom</ion-text>
+    </ion-item> -->
+    <ion-item routerLink="email" lines="none" detail>
+      <ion-text>
         Nastavi s e-poštom
       </ion-text>
     </ion-item>
-    <ion-item>
+    <ion-item routerLink="/login/email" lines="none" detail>
       <ion-text class="me-1"> Već si član? </ion-text>
-      <ion-text routerLink="/login/email" routerLinkActive="router-link-active" color="main">
+      <ion-text color="main">
         Prijavi se
       </ion-text>
     </ion-item>

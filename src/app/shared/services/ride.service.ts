@@ -72,10 +72,12 @@ export class RideService {
     },
   ];
   private config: any;
-  constructor(private httpClient: HttpClient,
-    private envConfigService: EnvironmentconfigService) {
-      this.config = envConfigService.getConfig();
-    }
+  constructor(
+    private httpClient: HttpClient,
+    private envConfigService: EnvironmentconfigService
+  ) {
+    this.config = envConfigService.getConfig();
+  }
 
   getAll() {
     return this.rides;
@@ -85,11 +87,21 @@ export class RideService {
     return this.rides.find((ride) => ride.id === rideId);
   }
 
-  getAllWithFilters(perPage: number, page: number, sort: string, destination: string, origin: string, date:string): Observable<IRide[]>{
-    return this.httpClient.get<IRide[]>(this.config.apiUrl + `/drives?per-page=${perPage}&page=${page}$sort=${sort}&destination=${destination}&origin=${origin}&date=${date}`);
+  getAllWithFilters(
+    perPage: number,
+    page: number,
+    sort: string,
+    destination: string,
+    origin: string,
+    date: string
+  ): Observable<IRide[]> {
+    return this.httpClient.get<IRide[]>(
+      this.config.apiUrl +
+        `/drives?per-page=${perPage}&page=${page}$sort=${sort}&destination=${destination}&origin=${origin}&date=${date}`
+    );
   }
 
-  get(id: number): Observable<IRide>{
+  get(id: number): Observable<IRide> {
     return this.httpClient.get<IRide>(this.config.apiUrl + `/drives/${id}`);
   }
 }

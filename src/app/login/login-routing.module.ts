@@ -6,20 +6,18 @@ import { LoginPage } from './login.page';
 const routes: Routes = [
   {
     path: '',
-    component: LoginPage
-  },  {
+    component: LoginPage,
+  },
+  {
     path: 'email',
-    loadChildren: () => import('./email/email.module').then( m => m.EmailPageModule)
+    loadChildren: () =>
+      import('./email/email.module').then((m) => m.EmailPageModule),
   },
   {
     path: 'name',
-    loadChildren: () => import('./name/name.module').then( m => m.NamePageModule)
+    loadChildren: () =>
+      import('./name/name.module').then((m) => m.NamePageModule),
   },
-  {
-    path: 'password-forgot',
-    loadChildren: () => import('./password-forgot/password-forgot.module').then( m => m.PasswordForgotPageModule)
-  }
-
 ];
 
 @NgModule({

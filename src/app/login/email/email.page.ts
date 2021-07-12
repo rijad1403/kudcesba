@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { LoginService } from 'src/app/shared/services/login.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
   selector: 'app-email',
@@ -15,7 +16,8 @@ export class EmailPage implements OnInit {
   constructor(
     private router: Router,
     private toastController: ToastController,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
@@ -26,20 +28,43 @@ export class EmailPage implements OnInit {
   }
 
   async login() {
-      const user = { username: this.loginForm.value.email, password: this.loginForm.value.password };
+    const loginCredentials = {
+      username: this.loginForm.value.email,
+      password: this.loginForm.value.password,
+    };
 
-      this.loginService.login(user).subscribe(data=>{
-        sessionStorage.setItem('currentUser', JSON.stringify(user));
-        sessionStorage.setItem('token', data.auth_key);
-        this.router.navigate(['/home']);
-      }, async error=>{
+    this.loginService.login(loginCredentials).subscribe(
+      async (data) => {
+        if (data.errors) {
+          const toast = await this.toastController.create({
+            message: 'Unešeni podaci nisu validni.',
+            duration: 3000,
+            color: 'danger',
+          });
+          toast.present();
+        } else {
+          sessionStorage.setItem('token', data.auth_key);
+          sessionStorage.setItem('currentUser', JSON.stringify(data));
+          this.router.navigate(['/my-profile']);
+
+          // this.userService.getMyProfile().subscribe(userData => {
+          //   sessionStorage.setItem('currentUser', JSON.stringify(userData));
+          //   this.router.navigate(['/dashboard']);
+          // },
+          //   error => {
+          //     this.router.navigate(['/login']);
+          //   }
+          // );
+        }
+      },
+      async (error) => {
         const toast = await this.toastController.create({
           message: 'Unešeni podaci nisu validni.',
           duration: 5000,
           color: 'danger',
         });
         toast.present();
-      })
-    
+      }
+    );
   }
 }

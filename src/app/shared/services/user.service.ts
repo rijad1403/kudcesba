@@ -51,8 +51,7 @@ export class UserService {
   }
 
   getMyProfile(): Observable<any> {
-    return this.httpClient.get<any>(
-      this.config.apiUrl + `/user/data` );
+    return this.httpClient.get<any>(this.config.apiUrl + `/user/data`);
   }
 
   login(username: string, password: string) {}

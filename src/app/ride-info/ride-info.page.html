@@ -1,5 +1,4 @@
 <ion-content>
-
   <ion-item lines="none">
     <ion-text>
       <h2 class="fw-bold">Petak, 18. jun</h2>
@@ -93,7 +92,7 @@
     <ion-list-header lines="inset">
       <h2 class="fw-bold">Putnici</h2>
     </ion-list-header>
-    <ion-item lines="none" detail *ngFor="let passenger of ride.passengers" routerLink="/user/{{passenger.id}}">
+    <ion-item lines="none" detail *ngFor="let passenger of ride.passengers" routerLink="/user-info/{{passenger.id}}">
       <ion-label>
         <h3 class="text-dark ">{{passenger.name}}</h3>
       </ion-label>
@@ -103,10 +102,8 @@
     </ion-item>
   </ion-list>
 
-  <ion-item class="ion-text-center" lines="none">
-    <ion-button color="main" shape="round" class="d-block m-auto">Nastavi
-    </ion-button>
-  </ion-item>
+  <ion-button color="main" shape="round" class="d-block m-auto my-3 w-50">Nastavi
+  </ion-button>
 
   <app-footer></app-footer>
 

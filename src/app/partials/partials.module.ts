@@ -7,9 +7,15 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { PlacesSearchModalComponent } from './places-search-modal/places-search-modal.component';
+import { PersonalInfoModalComponent } from './personal-info-modal/personal-info-modal.component';
 
 @NgModule({
-  declarations: [FooterComponent, HeaderComponent, PlacesSearchModalComponent],
+  declarations: [
+    FooterComponent,
+    HeaderComponent,
+    PlacesSearchModalComponent,
+    PersonalInfoModalComponent,
+  ],
   imports: [CommonModule, RouterModule, IonicModule.forRoot(), FormsModule],
   exports: [HeaderComponent, FooterComponent],
 })

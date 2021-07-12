@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { PasswordForgotPage } from './password-forgot.page';
+import { PersonalInfoModalComponent } from './personal-info-modal.component';
 
-describe('PasswordForgotPage', () => {
-  let component: PasswordForgotPage;
-  let fixture: ComponentFixture<PasswordForgotPage>;
+describe('PersonalInfoModalComponent', () => {
+  let component: PersonalInfoModalComponent;
+  let fixture: ComponentFixture<PersonalInfoModalComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PasswordForgotPage ],
+      declarations: [ PersonalInfoModalComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PasswordForgotPage);
+    fixture = TestBed.createComponent(PersonalInfoModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

@@ -4,10 +4,9 @@ import { Observable } from 'rxjs';
 import { EnvironmentconfigService } from './environmentconfig.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoginService {
-
   private config: any;
   constructor(
     private httpClient: HttpClient,
@@ -18,7 +17,8 @@ export class LoginService {
 
   login(loginData): Observable<any> {
     return this.httpClient.post<any>(
-      this.config.apiUrl + `/user/login`, loginData
+      this.config.apiUrl + `/user/login`,
+      loginData
     );
   }
 }

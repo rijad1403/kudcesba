@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './shared/guards/auth-guard';
 import { LogoutGuard } from './shared/guards/logout.guard';
 
 const routes: Routes = [
@@ -10,15 +11,26 @@ const routes: Routes = [
   },
   {
     path: 'login',
+    redirectTo: 'login/email',
+    pathMatch: 'full',
+    // loadChildren: () =>
+    //   import('./login/login.module').then((m) => m.LoginPageModule),
+    // canActivate: [LogoutGuard],
+    // canActivateChild: [LogoutGuard],
+  },
+  {
+    path: 'login/email',
     loadChildren: () =>
-      import('./login/login.module').then((m) => m.LoginPageModule),
+      import('./login/email/email.module').then((m) => m.EmailPageModule),
     canActivate: [LogoutGuard],
+    canActivateChild: [LogoutGuard],
   },
   {
     path: 'register',
     loadChildren: () =>
       import('./register/register.module').then((m) => m.RegisterPageModule),
     canActivate: [LogoutGuard],
+    canActivateChild: [LogoutGuard],
   },
   {
     path: '',
@@ -45,9 +57,9 @@ const routes: Routes = [
       import('./ride-info/ride-info.module').then((m) => m.RideInfoPageModule),
   },
   {
-    path: 'user/:userId',
+    path: 'user-info/:userId',
     loadChildren: () =>
-      import('./user/user.module').then((m) => m.UserPageModule),
+      import('./user-info/user-info.module').then((m) => m.UserPageModule),
   },
   {
     path: 'ride-publish',
@@ -55,6 +67,43 @@ const routes: Routes = [
       import('./ride-publish/ride-publish.module').then(
         (m) => m.RidePublishPageModule
       ),
+  },
+  {
+    path: 'personal-info',
+    loadChildren: () =>
+      import('./personal-info/personal-info.module').then(
+        (m) => m.PersonalInfoPageModule
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'password-change',
+    loadChildren: () =>
+      import('./password-change/password-change.module').then(
+        (m) => m.PasswordChangePageModule
+      ),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'password-reset',
+    loadChildren: () =>
+      import('./password-reset/password-reset.module').then(
+        (m) => m.PasswordResetPageModule
+      ),
+    canActivate: [LogoutGuard],
+  },
+  {
+    path: '*',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
+  {
+    path: 'my-profile',
+    loadChildren: () =>
+      import('./my-profile/my-profile.module').then(
+        (m) => m.MyProfilePageModule
+      ),
+    canActivate: [AuthGuard],
   },
 ];
 

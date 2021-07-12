@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { PlacesSearchModalComponent } from '../partials/places-search-modal/places-search-modal.component';
 import { RideService } from '../shared/services/ride.service';
+import { UserService } from '../shared/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,8 @@ export class HomePage implements OnInit {
 
   constructor(
     private rideService: RideService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
@@ -77,5 +79,9 @@ export class HomePage implements OnInit {
       .subscribe((data) => {
         console.log(data);
       });
+  }
+
+  test() {
+    this.userService.getMyProfile().subscribe((data) => console.log(data));
   }
 }

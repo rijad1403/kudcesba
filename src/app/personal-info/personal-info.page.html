@@ -1,0 +1,43 @@
+<ion-content>
+  <ion-item lines="none">
+    <h2 class="fw-bold">
+      <!-- Pozdrav, {{user.first_name}} -->
+      Osobni podaci
+    </h2>
+  </ion-item>
+
+  <ion-list lines="none" class="mt-3">
+    <ion-item (click)="presentModal('firstName')" detail>
+      <ion-text>
+        Ime:
+      </ion-text>
+      <ion-text class="ms-2" color="main">Rijad</ion-text>
+    </ion-item>
+    <ion-item (click)="presentModal('lastName')" detail>
+      <ion-text>
+        Prezime:
+      </ion-text>
+      <ion-text class="ms-2" color="main">Gračanin</ion-text>
+    </ion-item>
+    <ion-item (click)="presentModal('email')" detail>
+      <ion-text>
+        Email:
+      </ion-text>
+      <ion-text class="ms-2" color="main">rijad.gracanin14@gmail.com</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-text>
+        Spol:
+      </ion-text>
+      <ion-text class="ms-2" color="main">Muškarac</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-text>
+        Datum rođenja:
+      </ion-text>
+      <ion-text class="ms-2" color="main">14/03/1993</ion-text>
+    </ion-item>
+  </ion-list>
+
+  <!-- <app-footer></app-footer> -->
+</ion-content>

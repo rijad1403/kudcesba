@@ -1,6 +1,8 @@
-<ion-content class="ion-padding">
-  <h2 class="fw-bold">Tvoj email i lozinka?</h2>
-  <form [formGroup]="loginForm">
+<ion-content>
+  <ion-item lines="none">
+    <h2 class="fw-bold">Tvoj email i lozinka?</h2>
+  </ion-item>
+  <form [formGroup]=" loginForm">
     <ion-item>
       <ion-input type="email" placeholder="Email" formControlName="email" clearInput></ion-input>
     </ion-item>
@@ -11,13 +13,19 @@
       <ion-label>Zapamti me</ion-label>
       <ion-checkbox color="main"></ion-checkbox>
     </ion-item>
-    <ion-item lines="none">
-      <ion-text routerLink="/login/password-forgot" color="main">
+    <ion-item lines="none" routerLink="/register" detail>
+      <ion-text class="me-1"> Još nisi član? </ion-text>
+      <ion-text color="main">
+        Registruj se
+      </ion-text>
+    </ion-item>
+    <ion-item lines="none" routerLink="/password-reset" detail>
+      <ion-text color="main">
         Zaboravljena lozinka
       </ion-text>
     </ion-item>
-    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-      <ion-fab-button color="main" disabled={{loginForm.invalid}} (click)="login()">Prijava</ion-fab-button>
-    </ion-fab>
+    <ion-button class="d-block m-auto mt-2 w-50" shape="round" color="main" (click)="login()">
+      Prijava
+    </ion-button>
   </form>
 </ion-content>

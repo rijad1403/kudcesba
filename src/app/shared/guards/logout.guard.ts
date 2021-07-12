@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
+  CanActivateChild,
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
@@ -10,7 +11,20 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class LogoutGuard implements CanActivate {
+export class LogoutGuard implements CanActivate, CanActivateChild {
+  canActivateChild(
+    childRoute: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ):
+    | boolean
+    | UrlTree
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree> {
+    sessionStorage.removeItem('currentUser');
+    sessionStorage.removeItem('token');
+    return true;
+  }
+
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -19,7 +33,8 @@ export class LogoutGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    localStorage.removeItem('user');
+    sessionStorage.removeItem('currentUser');
+    sessionStorage.removeItem('token');
     return true;
   }
 }

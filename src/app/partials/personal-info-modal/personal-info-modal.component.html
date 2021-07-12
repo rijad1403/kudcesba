@@ -1,0 +1,21 @@
+<ion-content>
+  <ion-item lines="none">
+    <h2 class="fw-bold">
+      {{text}}
+    </h2>
+  </ion-item>
+  <form>
+    <ion-item>
+      <ion-input placeholder="{{placeholder}}">
+      </ion-input>
+    </ion-item>
+    <ion-item lines="none" (click)="dismiss()">
+      <ion-icon class="me-2" name="chevron-back-outline" color="main"></ion-icon>
+      <ion-text color="main">
+        Idi nazad
+      </ion-text>
+    </ion-item>
+    <ion-button class="d-block m-auto w-50 " shape="round" color="main">Ažuriraj
+    </ion-button>
+  </form>
+</ion-content>

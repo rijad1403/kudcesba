@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 
 @Component({
@@ -9,11 +10,12 @@ import { MenuController } from '@ionic/angular';
 export class HeaderComponent implements OnInit {
   user: any;
 
-  constructor(private menu: MenuController) {}
-  ngOnInit() {}
+  constructor(private menu: MenuController, private router: Router) {}
+  ngOnInit() {
+    this.user = JSON.parse(sessionStorage.getItem('currentUser'));
+  }
 
   openMainMenu() {
-    this.user = JSON.parse(localStorage.getItem('user'));
     if (this.user) {
       this.menu.enable(true, 'main-menu-auth');
       this.menu.open('main-menu-auth');
@@ -25,5 +27,11 @@ export class HeaderComponent implements OnInit {
 
   closeMainMenu() {
     this.menu.close();
+  }
+
+  logout() {
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('currentUser');
+    this.router.navigate(['/']);
   }
 }

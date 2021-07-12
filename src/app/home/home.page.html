@@ -23,8 +23,8 @@
           <ion-icon class="me-2" name="people-outline" color="main"></ion-icon>
           <ion-input type="number" placeholder="Broj putnika" min="1"></ion-input>
         </ion-item>
-        <ion-button expand="block" (click)="getTestRide()" color="main">
-          <ion-icon name="search-outline"></ion-icon>
+        <ion-button class="d-block m-auto mt-2 w-50" shape="round" color="main" (click)="getTestRide()">
+          Pretraga
         </ion-button>
       </ion-card-content>
     </ion-card>
@@ -101,7 +101,7 @@
     <ion-grid>
       <ion-row>
         <ion-col class="ion-text-center">
-          <ion-button routerLink="/drives-search" color="main" shape="round">Pronađi prijevoz
+          <ion-button routerLink="/ride-search" color="main" shape="round">Pronađi prijevoz
           </ion-button>
         </ion-col>
       </ion-row>
