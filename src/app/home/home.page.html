@@ -5,27 +5,29 @@
     </ion-text>
     <ion-card class="from-to-container">
       <ion-card-content>
+        <form [formGroup]="rideSearchForm">
         <ion-item detail (click)="presentModal('start')">
           <ion-icon class="me-2" name="location-outline" color="secondary"></ion-icon>
-          <ion-input type="text" placeholder="Polazište" value="{{start}}" readonly>
+          <ion-input type="text" placeholder="Polazište" formControlName="start" readonly>
           </ion-input>
         </ion-item>
         <ion-item detail (click)="presentModal('dest')">
           <ion-icon class="me-2" name="location-outline" color="main"></ion-icon>
-          <ion-input type="text" placeholder="Odredište" value="{{destination}}" readonly>
+          <ion-input type="text" placeholder="Odredište" formControlName="destination" readonly>
           </ion-input>
         </ion-item>
         <ion-item>
           <ion-icon class="me-2" name="calendar-outline" color="main"></ion-icon>
-          <ion-datetime displayFormat="DD/MM/YYYY" placeholder="Datum"></ion-datetime>
+          <ion-datetime displayFormat="DD/MM/YYYY" formControlName="date" placeholder="Datum" doneText="Izaberi" cancelText="Zatvori" value="string" (ionCancel)="this.rideSearchForm.patchValue({date: ''})"></ion-datetime>
         </ion-item>
-        <ion-item>
+        <!-- <ion-item>
           <ion-icon class="me-2" name="people-outline" color="main"></ion-icon>
           <ion-input type="number" placeholder="Broj putnika" min="1"></ion-input>
-        </ion-item>
-        <ion-button class="d-block m-auto mt-2 w-50" shape="round" color="main" (click)="getTestRide()">
-          Pretraga
+        </ion-item> -->
+        <ion-button type="submit" [disabled]="rideSearchForm.invalid" class="d-block m-auto mt-2 w-50" shape="round" color="main" (click)="getTestRide()">
+          <ion-icon name="search-outline"></ion-icon>
         </ion-button>
+      </form>
       </ion-card-content>
     </ion-card>
   </div>

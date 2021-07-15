@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
@@ -15,6 +15,7 @@ import { PartialsModule } from '../partials/partials.module';
     IonicModule,
     HomePageRoutingModule,
     PartialsModule,
+    ReactiveFormsModule,
   ],
   declarations: [HomePage, CommonDrivesComponent],
 })
