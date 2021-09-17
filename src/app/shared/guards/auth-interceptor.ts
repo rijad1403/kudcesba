@@ -18,7 +18,7 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     // add authorization header with jwt token if available
-    const token = sessionStorage.getItem('token');
+    const token = localStorage.getItem('token');
     console.log(token);
 
     if (token) {
@@ -40,8 +40,8 @@ export class AuthInterceptor implements HttpInterceptor {
               if (err.status === 401 && token) {
                 alert('error');
                 setTimeout(() => {
-                  sessionStorage.removeItem('currentUser');
-                  sessionStorage.removeItem('token');
+                  localStorage.removeItem('currentUser');
+                  localStorage.removeItem('token');
                   this.router.navigate(['login']);
                 }, 3000);
               } else {

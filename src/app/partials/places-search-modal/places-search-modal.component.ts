@@ -11,7 +11,7 @@ export class PlacesSearchModalComponent implements OnInit {
   @Input() type: string;
   placeInput = '';
   places: any = [];
-  placesLoading: boolean;
+  contentLoaded = true;
 
   constructor(
     private modalController: ModalController,
@@ -27,31 +27,28 @@ export class PlacesSearchModalComponent implements OnInit {
     });
   }
 
-  dismissAndSendData(placeName: string) {
+  dismissAndSendData(place: any) {
     this.modalController.dismiss({
       type: this.type,
-      place: placeName,
+      place,
     });
   }
 
   getPlaces() {
-    console.log(this.placeInput);
     if (this.placeInput.length > 2) {
-      this.placesLoading = true;
+      this.contentLoaded = false;
       this.placesService.searchByName(this.placeInput).subscribe(
         (data) => {
-          setTimeout(() => {
-            this.places = data;
-            this.placesLoading = false;
-          }, 300);
+          this.places = data;
+          this.contentLoaded = true;
         },
         (error) => {
-          this.placesLoading = false;
+          this.contentLoaded = true;
           this.places = [];
         }
       );
     } else {
-      this.placesLoading = false;
+      this.contentLoaded = true;
       this.places = [];
     }
   }

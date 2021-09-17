@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { PlacesSearchModalComponent } from '../partials/places-search-modal/places-search-modal.component';
 import { RideService } from '../shared/services/ride.service';
@@ -18,7 +19,8 @@ export class HomePage implements OnInit {
   constructor(
     private rideService: RideService,
     private modalController: ModalController,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -72,13 +74,14 @@ export class HomePage implements OnInit {
       },
     });
     modal.addEventListener('ionModalDidPresent', () => {
-      console.log(modal);
       setTimeout(() => {
         document.querySelector<HTMLInputElement>('#placesSearch').focus();
       }, 1000);
     });
     await modal.present();
     const data = (await modal.onDidDismiss()).data;
+    console.log(data);
+
     if (data.type === 'start' && data.place) {
       this.rideSearchForm.patchValue({
         start: data.place,
@@ -99,22 +102,18 @@ export class HomePage implements OnInit {
   }
 
   getRide() {
-    const date = new Date(this.rideSearchForm.value.date).getDate();
-    const month = new Date(this.rideSearchForm.value.date).getMonth() + 1;
-    const year = new Date(this.rideSearchForm.value.date).getFullYear();
-    // console.log(this.destination, this.start, `${year}-${month}-${date}`);
-    this.rideService
-      .getAllWithFilters(
-        20,
-        1,
-        'id',
-        this.rideSearchForm.value.date.destination,
+    const date = new Date(this.rideSearchForm.value.date);
+    const formatedDate = `${date.getFullYear()}-${
+      date.getMonth() + 1
+    }-${date.getDate()}`;
+    this.router.navigate(
+      [
+        'ride-share',
+        this.rideSearchForm.value.destination,
         this.rideSearchForm.value.start,
-        this.rideSearchForm.value.date
-      )
-      .subscribe((data) => {
-        console.log(data);
-      });
+      ],
+      { queryParams: { date: formatedDate } }
+    );
   }
 
   test() {

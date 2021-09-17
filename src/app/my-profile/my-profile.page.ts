@@ -12,7 +12,6 @@ export class MyProfilePage implements OnInit {
   constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.user = JSON.parse(sessionStorage.getItem('currentUser'));
-    console.log(this.user);
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
   }
 }

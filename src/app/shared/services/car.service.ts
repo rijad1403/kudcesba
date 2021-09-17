@@ -7,10 +7,9 @@ import { IStatus } from '../models/car/status';
 import { EnvironmentconfigService } from './environmentconfig.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CarService {
-
   private config: any;
   constructor(
     private httpClient: HttpClient,
@@ -20,9 +19,7 @@ export class CarService {
   }
 
   getAll(): Observable<ICar[]> {
-    return this.httpClient.get<ICar[]>(
-      this.config.apiUrl + `/cars`
-    );
+    return this.httpClient.get<ICar[]>(this.config.apiUrl + `/cars`);
   }
 
   getCarTypes(): Observable<ICarType[]> {
@@ -38,15 +35,17 @@ export class CarService {
   }
 
   add(car: ICar): Observable<ICar> {
-    return this.httpClient.post<ICar>(
-      this.config.apiUrl + `/cars`,
-      car
-    );
+    return this.httpClient.post<ICar>(this.config.apiUrl + `/cars`, car);
   }
 
   delete(id: number): Observable<any> {
-    return this.httpClient.delete<any>(
-      this.config.apiUrl + `/cars/${id}`
+    return this.httpClient.delete<any>(this.config.apiUrl + `/cars/${id}`);
+  }
+
+  update(id: number, vehicle: ICar): Observable<any> {
+    return this.httpClient.put<any>(
+      `${this.config.apiUrl}/cars/${id}`,
+      vehicle
     );
   }
 }

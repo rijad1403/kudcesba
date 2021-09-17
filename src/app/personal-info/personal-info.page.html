@@ -11,32 +11,32 @@
       <ion-text>
         Ime:
       </ion-text>
-      <ion-text class="ms-2" color="main">Rijad</ion-text>
+      <ion-text class="ms-2" color="main">{{currentUser.first_name}}</ion-text>
     </ion-item>
     <ion-item (click)="presentModal('lastName')" detail>
       <ion-text>
         Prezime:
       </ion-text>
-      <ion-text class="ms-2" color="main">Gračanin</ion-text>
+      <ion-text class="ms-2" color="main">{{currentUser.last_name}}</ion-text>
     </ion-item>
-    <ion-item (click)="presentModal('email')" detail>
+    <ion-item (click)="presentModal('username')" detail>
       <ion-text>
-        Email:
+        Username:
       </ion-text>
-      <ion-text class="ms-2" color="main">rijad.gracanin14@gmail.com</ion-text>
+      <ion-text class="ms-2" color="main">{{currentUser.username}}</ion-text>
     </ion-item>
-    <ion-item>
+    <!-- <ion-item>
       <ion-text>
         Spol:
       </ion-text>
       <ion-text class="ms-2" color="main">Muškarac</ion-text>
-    </ion-item>
-    <ion-item>
+    </ion-item> -->
+    <!-- <ion-item>
       <ion-text>
         Datum rođenja:
       </ion-text>
       <ion-text class="ms-2" color="main">14/03/1993</ion-text>
-    </ion-item>
+    </ion-item> -->
   </ion-list>
 
   <!-- <app-footer></app-footer> -->

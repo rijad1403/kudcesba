@@ -9,6 +9,7 @@ import { RideService } from '../shared/services/ride.service';
 })
 export class RideInfoPage implements OnInit {
   ride: any;
+  contentLoaded = false;
   constructor(
     private route: ActivatedRoute,
     private rideService: RideService
@@ -16,7 +17,10 @@ export class RideInfoPage implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
-      this.ride = this.rideService.getById(+params.rideId);
+      this.ride = this.rideService.get(+params.rideId).subscribe((data) => {
+        this.ride = data;
+        this.contentLoaded = true;
+      });
     });
   }
 }

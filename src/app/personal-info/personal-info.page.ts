@@ -8,9 +8,12 @@ import { PersonalInfoModalComponent } from '../partials/personal-info-modal/pers
   styleUrls: ['./personal-info.page.scss'],
 })
 export class PersonalInfoPage implements OnInit {
+  currentUser: any;
   constructor(private modalController: ModalController) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
 
   async presentModal(input: string) {
     const modal = await this.modalController.create({

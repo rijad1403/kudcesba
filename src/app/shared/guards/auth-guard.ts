@@ -27,8 +27,7 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'));
-
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (this.currentUser) {
       return true;
     } else {

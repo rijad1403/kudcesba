@@ -22,9 +22,9 @@ export class PersonalInfoModalComponent implements OnInit {
         this.text = 'Koje je tvoje prezime?';
         this.placeholder = 'Prezime';
         break;
-      case 'email':
-        this.text = 'Koji je tvoj email?';
-        this.placeholder = 'Email';
+      case 'username':
+        this.text = 'Koji je tvoj username?';
+        this.placeholder = 'Username';
         break;
       default:
         break;

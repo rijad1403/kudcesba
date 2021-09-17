@@ -13,15 +13,15 @@
       <ion-button routerLink="/ride-search" routerLinkActive="router-link-active">
         <ion-icon name="search-outline"></ion-icon>
       </ion-button>
-      <ion-button routerLink="/ride-publish">
+      <ion-button routerLink="/ride-publish" *ngIf="loggedIn">
         <ion-icon name="add-circle-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-menu menuId="main-menu" contentId="main">
-  <ion-content class="ion-padding">
+<ion-menu menuId="main-menu-auth" contentId="main">
+  <ion-content class="ion-padding" *ngIf="!loggedIn">
     <ion-list>
       <ion-item (click)="closeMainMenu()" routerLink="/login" detail>
         <ion-icon class="me-2" name="log-in-outline" color="main"></ion-icon>
@@ -33,10 +33,7 @@
       </ion-item>
     </ion-list>
   </ion-content>
-</ion-menu>
-
-<ion-menu menuId="main-menu-auth" contentId="main">
-  <ion-content class="ion-padding">
+  <ion-content class="ion-padding" *ngIf="loggedIn">
     <ion-list>
       <ion-item (click)="closeMainMenu()" routerLink="/my-profile" detail>
         <ion-icon class="me-2" name="person-outline" color="main"></ion-icon>
@@ -46,7 +43,7 @@
         <ion-icon class="me-2" name="document-lock-outline" color="main"></ion-icon>
         <ion-nav-link>Promjena lozinke</ion-nav-link>
       </ion-item>
-      <ion-item (click)="closeMainMenu()" detail>
+      <ion-item (click)="closeMainMenu()" routerLink="/vehicles" detail>
         <ion-icon class="me-2" name="car-outline" color="main"></ion-icon>
         <ion-nav-link>Vozila</ion-nav-link>
       </ion-item>

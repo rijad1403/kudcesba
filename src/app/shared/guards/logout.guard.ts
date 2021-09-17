@@ -20,8 +20,8 @@ export class LogoutGuard implements CanActivate, CanActivateChild {
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
-    sessionStorage.removeItem('currentUser');
-    sessionStorage.removeItem('token');
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
     return true;
   }
 
@@ -33,8 +33,8 @@ export class LogoutGuard implements CanActivate, CanActivateChild {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    sessionStorage.removeItem('currentUser');
-    sessionStorage.removeItem('token');
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
     return true;
   }
 }

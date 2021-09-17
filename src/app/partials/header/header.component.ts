@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { LoginService } from 'src/app/shared/services/login.service';
 
 @Component({
   selector: 'app-header',
@@ -9,29 +10,32 @@ import { MenuController } from '@ionic/angular';
 })
 export class HeaderComponent implements OnInit {
   user: any;
+  loggedIn = false;
 
-  constructor(private menu: MenuController, private router: Router) {}
+  constructor(
+    private menu: MenuController,
+    private router: Router,
+    private loginService: LoginService
+  ) {}
   ngOnInit() {
-    this.user = JSON.parse(sessionStorage.getItem('currentUser'));
+    this.loginService.onCheckLoggedIn().subscribe((data) => {
+      this.loggedIn = data;
+    });
   }
 
-  openMainMenu() {
-    if (this.user) {
-      this.menu.enable(true, 'main-menu-auth');
-      this.menu.open('main-menu-auth');
-    } else {
-      this.menu.enable(true, 'main-menu');
-      this.menu.open('main-menu');
-    }
+  async openMainMenu() {
+    await this.menu.enable(true);
+    await this.menu.open();
   }
 
-  closeMainMenu() {
-    this.menu.close();
+  async closeMainMenu() {
+    await this.menu.close();
   }
 
   logout() {
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
+    localStorage.removeItem('currentUser');
+    this.loginService.checkLoggedIn(false);
     this.router.navigate(['/']);
   }
 }

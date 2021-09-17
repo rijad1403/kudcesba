@@ -41,12 +41,12 @@ export class EmailPage implements OnInit {
             duration: 3000,
             color: 'danger',
           });
-          toast.present();
+          await toast.present();
         } else {
-          sessionStorage.setItem('token', data.auth_key);
-          sessionStorage.setItem('currentUser', JSON.stringify(data));
-          this.router.navigate(['/my-profile']);
-
+          localStorage.setItem('token', data.auth_key);
+          localStorage.setItem('currentUser', JSON.stringify(data));
+          this.loginService.checkLoggedIn(true);
+          await this.router.navigate(['/my-profile']);
           // this.userService.getMyProfile().subscribe(userData => {
           //   sessionStorage.setItem('currentUser', JSON.stringify(userData));
           //   this.router.navigate(['/dashboard']);
@@ -63,7 +63,7 @@ export class EmailPage implements OnInit {
           duration: 5000,
           color: 'danger',
         });
-        toast.present();
+        await toast.present();
       }
     );
   }

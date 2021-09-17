@@ -1,26 +1,26 @@
 <ion-content>
-    <ion-item lines="none">
-      <h2 class="fw-bold">
-        {{type == 'start' ? 'Otkud polaziš?' : 'Gdje putuješ?'}}
-      </h2>
+  <ion-item lines="none">
+    <h2 class="fw-bold">
+      {{type == 'start' ? 'Otkud polaziš?' : 'Gdje putuješ?'}}
+    </h2>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-searchbar [(ngModel)]="placeInput" id="placesSearch" (ngModelChange)="getPlaces()" clearIcon></ion-searchbar>
+  </ion-item>
+  <ion-item lines="none" *ngIf="!contentLoaded">
+    <ion-spinner color="main" class="m-auto"></ion-spinner>
+  </ion-item>
+  <ion-list lines="none" *ngIf="contentLoaded">
+    <ion-item (click)="dismissAndSendData(place)" *ngFor="let place of places" detail>
+      <ion-text color="main">
+        {{place.name}}
+      </ion-text>
     </ion-item>
-    <ion-item lines="none">
-      <ion-searchbar [(ngModel)]="placeInput" id="placesSearch" (ngModelChange)="getPlaces()" clearIcon></ion-searchbar>
-    </ion-item>
-    <ion-list>
-      <ion-item lines="none" *ngIf="placesLoading">
-        <ion-spinner color="main" *ngIf="placesLoading" class="m-auto"></ion-spinner>
-      </ion-item>
-      <ion-item (click)="dismissAndSendData(place.name)" *ngFor="let place of places" detail>
-        <ion-text color="main">
-          {{place.name}}
-        </ion-text>
-      </ion-item>
-    </ion-list>
-    <ion-item lines="none" (click)="dismiss()">
+    <ion-item (click)="dismiss()">
       <ion-icon class="me-2" name="chevron-back-outline" color="main"></ion-icon>
       <ion-text color="main">
         Idi nazad
       </ion-text>
     </ion-item>
+  </ion-list>
 </ion-content>

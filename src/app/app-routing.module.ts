@@ -63,6 +63,7 @@ const routes: Routes = [
   },
   {
     path: 'ride-publish',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./ride-publish/ride-publish.module').then(
         (m) => m.RidePublishPageModule
@@ -104,6 +105,11 @@ const routes: Routes = [
         (m) => m.MyProfilePageModule
       ),
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'vehicles',
+    loadChildren: () =>
+      import('./vehicles/vehicles.module').then((m) => m.VehiclesPageModule),
   },
 ];
 
