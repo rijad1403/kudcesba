@@ -26,6 +26,10 @@ export class PersonalInfoModalComponent implements OnInit {
         this.text = 'Koji je tvoj username?';
         this.placeholder = 'Username';
         break;
+      case 'phone':
+        this.text = 'Koji je broj tvog mobitela?';
+        this.placeholder = 'Telefon';
+        break;
       default:
         break;
     }

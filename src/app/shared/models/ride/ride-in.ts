@@ -1,14 +1,8 @@
-import { IPlace } from '../place/place';
+import { IPlace } from './place';
+import { IRoute } from './route';
 
 export interface IRideIn {
-  distance: number;
-  duration: number;
-  dates: Date[] | string[];
-  stops: {
-    origin: IPlace;
-    waypoints?: IPlace[];
-    destination: IPlace;
-  };
+  route: IRoute;
   car: {
     id: string;
   };

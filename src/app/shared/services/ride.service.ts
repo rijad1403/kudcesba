@@ -46,6 +46,6 @@ export class RideService {
   }
 
   createRide(ride: IRideIn): Observable<any> {
-    return this.httpClient.post<any>(`${this.config.apiUrl}/drives`, {});
+    return this.httpClient.post<any>(`${this.config.apiUrl}/drives`, ride);
   }
 }

@@ -1,43 +1,43 @@
 <ion-content>
-  <ion-item lines="none">
-    <h2 class="fw-bold">
-      <!-- Pozdrav, {{user.first_name}} -->
-      Osobni podaci
-    </h2>
+  <ion-item lines="none" *ngIf="!contentLoaded">
+    <ion-spinner color="main" class="m-auto mt-4"></ion-spinner>
   </ion-item>
-
-  <ion-list lines="none" class="mt-3">
-    <ion-item (click)="presentModal('firstName')" detail>
-      <ion-text>
-        Ime:
-      </ion-text>
-      <ion-text class="ms-2" color="main">{{currentUser.first_name}}</ion-text>
-    </ion-item>
-    <ion-item (click)="presentModal('lastName')" detail>
-      <ion-text>
-        Prezime:
-      </ion-text>
-      <ion-text class="ms-2" color="main">{{currentUser.last_name}}</ion-text>
-    </ion-item>
-    <ion-item (click)="presentModal('username')" detail>
-      <ion-text>
-        Username:
-      </ion-text>
-      <ion-text class="ms-2" color="main">{{currentUser.username}}</ion-text>
-    </ion-item>
-    <!-- <ion-item>
-      <ion-text>
-        Spol:
-      </ion-text>
-      <ion-text class="ms-2" color="main">Muškarac</ion-text>
-    </ion-item> -->
-    <!-- <ion-item>
-      <ion-text>
-        Datum rođenja:
-      </ion-text>
-      <ion-text class="ms-2" color="main">14/03/1993</ion-text>
-    </ion-item> -->
-  </ion-list>
-
+  <ng-container *ngIf="contentLoaded">
+    <form [formGroup]="personalInfoForm">
+      <ion-list lines="none">
+        <ion-item>
+          <h2 class="fw-bold">
+            Osobni podaci
+          </h2>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="Ime" formControlName="firstName" clearInput>
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="Prezime" formControlName="lastName" clearInput></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="text" placeholder="Facebook" formControlName="facebookProfile" clearInput></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="number" placeholder="Broj telefona" formControlName="phone" clearInput></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Pozivni broj</ion-label>
+          <ion-select placeholder="Izaberi" formControlName="phonePrefix" cancelText="Nazad">
+            <ion-select-option [value]="countryPrefix.prefix" *ngFor="let countryPrefix of countryPrefixes">
+              {{countryPrefix.prefix}}
+              ({{countryPrefix.country}})
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-button class="d-block m-auto mt-2 w-50" [disabled]="personalInfoForm.invalid" color="main" shape="round"
+          (click)="submitForm()">
+          Ažuriraj
+        </ion-button>
+      </ion-list>
+    </form>
+  </ng-container>
   <!-- <app-footer></app-footer> -->
 </ion-content>

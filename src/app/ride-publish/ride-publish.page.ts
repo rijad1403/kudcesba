@@ -3,10 +3,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { PlacesSearchModalComponent } from '../partials/places-search-modal/places-search-modal.component';
 import { ICar } from '../shared/models/car/car';
-import { IPlace } from '../shared/models/place/place';
-import { IRide } from '../shared/models/ride/ride';
+import { IPlace } from '../shared/models/ride/place';
 import { IRideIn } from '../shared/models/ride/ride-in';
 import { CarService } from '../shared/services/car.service';
+import { RideService } from '../shared/services/ride.service';
 
 @Component({
   selector: 'app-ride-publish',
@@ -16,12 +16,13 @@ import { CarService } from '../shared/services/car.service';
 export class RidePublishPage implements OnInit {
   newRideForm: FormGroup;
   vehicles: ICar[];
-  origin: IPlace;
-  destination: IPlace;
+  origin: any;
+  destination: any;
 
   constructor(
     private modalController: ModalController,
-    private vehicleService: CarService
+    private vehicleService: CarService,
+    private rideService: RideService
   ) {}
 
   ngOnInit() {
@@ -67,27 +68,55 @@ export class RidePublishPage implements OnInit {
   }
 
   createRide() {
-    console.log(this.newRideForm);
     const ride: IRideIn = {
-      stops: {
-        origin: this.origin,
-        destination: this.destination,
+      route: {
+        distance: 100,
+        duration: 100,
+        dates: ['2021-10-31'],
+        stops: {
+          origin: {
+            sortKey: -1,
+            name: this.origin.name,
+            latitude: this.origin.latitude,
+            longitude: this.origin.longitude,
+            population: this.origin.population,
+            hours: 0,
+            minutes: 0,
+            timeDelta: 0,
+            distance: 0,
+            duration: 0,
+            nextDay: false,
+          },
+          waypoints: [],
+          destination: {
+            sortKey: -1,
+            name: this.destination.name,
+            latitude: this.destination.latitude,
+            longitude: this.destination.longitude,
+            population: this.destination.population,
+            hours: 0,
+            minutes: 0,
+            timeDelta: 0,
+            distance: 0,
+            duration: 0,
+            nextDay: false,
+          },
+        },
       },
-      car: this.newRideForm.value.vehicleId,
-      dates: ['2021-31-10'],
-      distance: 100,
-      duration: 100,
+      car: { id: this.newRideForm.value.vehicleId },
       details: {
         price: this.newRideForm.value.price,
         minPrice: this.newRideForm.value.price,
-        freeSeats: this.newRideForm.value.seats,
-        maxSeats: this.newRideForm.value.seats,
+        freeSeats: this.newRideForm.value.freeSeats,
+        maxSeats: this.newRideForm.value.freeSeats,
         luggage: this.newRideForm.value.luggage,
         smoking: this.newRideForm.value.smoking,
         female_only: this.newRideForm.value.femaleOnly,
         note: this.newRideForm.value.note,
       },
     };
+    console.log(ride);
+    this.rideService.createRide(ride).subscribe();
   }
 
   test() {

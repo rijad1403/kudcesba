@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IPasswordUpdate } from '../models/user/password-update';
+import { PersonalInfo } from '../models/user/personal-info';
 import { EnvironmentconfigService } from './environmentconfig.service';
 
 @Injectable({
@@ -47,14 +49,8 @@ export class UserService {
     private httpClient: HttpClient,
     private envConfigService: EnvironmentconfigService
   ) {
-    this.config = envConfigService.getConfig();
+    this.config = this.envConfigService.getConfig();
   }
-
-  getMyProfile(): Observable<any> {
-    return this.httpClient.get<any>(this.config.apiUrl + `/user/data`);
-  }
-
-  login(username: string, password: string) {}
 
   getAll() {
     return this.users;
@@ -62,5 +58,23 @@ export class UserService {
 
   getByID(userId: number) {
     return this.users.find((user) => user.id === userId);
+  }
+
+  getMyProfile(): Observable<any> {
+    return this.httpClient.get<any>(this.config.apiUrl + `/user/data`);
+  }
+
+  update(personalInfo: PersonalInfo): Observable<any> {
+    return this.httpClient.post<any>(
+      `${this.config.apiUrl}/user/update-data`,
+      personalInfo
+    );
+  }
+
+  updatePassword(passwordUpdate: IPasswordUpdate): Observable<any> {
+    return this.httpClient.post<any>(
+      `${this.config.apiUrl}/user/reset-password`,
+      passwordUpdate
+    );
   }
 }

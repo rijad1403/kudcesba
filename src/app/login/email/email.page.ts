@@ -44,17 +44,16 @@ export class EmailPage implements OnInit {
           await toast.present();
         } else {
           localStorage.setItem('token', data.auth_key);
-          localStorage.setItem('currentUser', JSON.stringify(data));
-          this.loginService.checkLoggedIn(true);
-          await this.router.navigate(['/my-profile']);
-          // this.userService.getMyProfile().subscribe(userData => {
-          //   sessionStorage.setItem('currentUser', JSON.stringify(userData));
-          //   this.router.navigate(['/dashboard']);
-          // },
-          //   error => {
-          //     this.router.navigate(['/login']);
-          //   }
-          // );
+          this.userService.getMyProfile().subscribe(
+            async (userData) => {
+              localStorage.setItem('currentUser', JSON.stringify(userData));
+              this.loginService.checkLoggedIn(true);
+              await this.router.navigate(['/my-profile']);
+            },
+            async (error) => {
+              await this.router.navigate(['/login']);
+            }
+          );
         }
       },
       async (error) => {

@@ -84,11 +84,11 @@ export class HomePage implements OnInit {
 
     if (data.type === 'start' && data.place) {
       this.rideSearchForm.patchValue({
-        start: data.place,
+        start: data.place.name,
       });
     } else if (data.type === 'dest' && data.place) {
       this.rideSearchForm.patchValue({
-        destination: data.place,
+        destination: data.place.name,
       });
     }
   }
@@ -109,8 +109,8 @@ export class HomePage implements OnInit {
     this.router.navigate(
       [
         'ride-share',
-        this.rideSearchForm.value.destination,
         this.rideSearchForm.value.start,
+        this.rideSearchForm.value.destination,
       ],
       { queryParams: { date: formatedDate } }
     );
