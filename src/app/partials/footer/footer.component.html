@@ -1,27 +1,35 @@
 <ion-list lines="none">
   <ion-item *ngFor="let page of footerPages" class="ion-text-center">
-    <ion-label color="light">
+    <ion-text color="light" class="w-100">
       {{ page.title }}
-    </ion-label>
+    </ion-text>
   </ion-item>
   <ion-item class="ion-text-center">
-    <ion-label>
+    <ion-text class="w-100">
       Pratite nas na
-    </ion-label>
-
+    </ion-text>
   </ion-item>
-  <ion-item class="ion-text-center">
-    <ion-label>
-      <ion-icon name="logo-linkedin" size="large" color="main" class="me-1"></ion-icon>
-      <ion-icon name="logo-facebook" size="large" color="main" class="me-1"></ion-icon>
-      <ion-icon name="logo-instagram" size="large" color="main" class="me-1"></ion-icon>
-      <ion-icon name="logo-youtube" size="large" color="main" class="me-1"></ion-icon>
-    </ion-label>
+  <ion-item>
+    <ion-text class="d-block m-auto">
+      <a href="https://www.facebook.com/kudces/" target="target">
+        <ion-icon name="logo-linkedin" size="large" color="main" class="me-1"></ion-icon>
+      </a>
+      <a href="https://www.linkedin.com/company/17941004/admin/" target="target">
+        <ion-icon name="logo-facebook" size="large" color="main" class="me-1"></ion-icon>
+      </a>
+      <a href="https://www.instagram.com/kudces.ba/" target="target">
+        <ion-icon name="logo-instagram" size="large" color="main" class="me-1"></ion-icon>
+      </a>
+      <a href="https://www.youtube.com/channel/UCYLR0IVqlexWTjNY0LxFfMg" target="target">
+        <ion-icon name="logo-youtube" size="large" color="main" class="me-1"></ion-icon>
+      </a>
+    </ion-text>
   </ion-item>
   <ion-item>
     <ion-text class="ion-text-center w-100">
-      <p><small>Kudćeš.ba 2021 &copy;, sva prava zadržana</small></p>
-      <p><small>Developed by Unknown</small></p>
+      <small>Kudćeš.ba 2022 &copy;, sva prava zadržana</small>
+      <br>
+      <small>Developed by Unknown</small>
     </ion-text>
   </ion-item>
 </ion-list>

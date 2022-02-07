@@ -1,0 +1,84 @@
+<ion-content>
+  <ion-item lines="none" *ngIf="!contentLoaded">
+    <ion-spinner color="main" class="m-auto mt-4"></ion-spinner>
+  </ion-item>
+
+  <ng-container *ngIf="contentLoaded">
+    <ion-list lines="none">
+      <ion-item>
+        <h2 class="fw-bold">Vožnje</h2>
+      </ion-item>
+      <ion-item>
+        <ion-segment color="main" (ionChange)="changeRideType($event)" value="active">
+          <ion-segment-button value="active">
+            <ion-label>Aktivne</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="past">
+            <ion-label>Prošle</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-item>
+      <ion-item>
+        Prikazano {{rides.length}} od ukupno {{totalRidesCount}} rezultata.
+      </ion-item>
+      <ion-item *ngFor="let ride of rides" routerLink="/ride-info/{{ride.id}}">
+        <ion-card class="w-100 ion-padding">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-text color="dark" class="fw-bold">
+                  Vožnja: {{ ride.origin.name + ' - ' + ride.destination.name }}
+                </ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-text color="dark" class="fw-bold">
+                  Cijena: {{ ride.price}} KM
+                </ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-text color="dark" class="fw-bold">
+                  Vrijeme polaska: {{ride.departure_date + ' / ' + ride.departure_time }}
+                </ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row class="mb-3">
+              <ion-col>
+                <ion-text color="dark" class="fw-bold">
+                  Vrijeme dolaska: {{ride.arrival_date + ' / ' + ride.arrival_time }}
+                </ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngFor="let stop of ride.stops; let first = first; let last = last">
+              <ion-col class="border-start border-dark">
+                <ion-text class="fw-bold" color="dark">
+                  {{stop.place.name}}
+                </ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img [src]="ride.user.image ? ride.user.image : '../../assets/driver-default.png'">
+            </ion-avatar>
+            <ion-label>
+              <h3 class="text-dark fw-bold">{{ride.user.first_name}} {{ride.user.last_name}}</h3>
+              <!-- <p>
+                <ion-icon name="star-outline"></ion-icon> {{ride.user?.rating}}
+              </p> -->
+            </ion-label>
+          </ion-item>
+        </ion-card>
+      </ion-item>
+      <ion-item>
+        <ion-infinite-scroll *ngIf="showInfiniteScroll" (ionInfinite)="onScroll($event)">
+          <ion-spinner color="main" class="m-auto d-block my-4"></ion-spinner>
+        </ion-infinite-scroll>
+      </ion-item>
+    </ion-list>
+    <app-footer></app-footer>
+  </ng-container>
+</ion-content>

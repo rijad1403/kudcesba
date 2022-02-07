@@ -1,0 +1,56 @@
+<ion-content>
+  <ion-list>
+    <ion-item lines="none">
+      <h2 class="fw-bold">Registracija</h2>
+    </ion-item>
+    <!-- <ion-item>
+      <ion-text>Nastavi s Facebookom</ion-text>
+    </ion-item> -->
+    <form [formGroup]="registerForm">
+      <ion-item>
+        <ion-input type="text" placeholder="Ime*" formControlName="firstName" clearInput></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Prezime*" formControlName="lastName" clearInput></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Korisničko ime*" formControlName="username" clearInput></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="password" placeholder="Lozinka*" formControlName="password" clearInput></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="email" placeholder="Email*" formControlName="email" clearInput></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Facebook profil" formControlName="facebookProfile" clearInput></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Pozivni broj države*</ion-label>
+        <ion-select formControlName="phonePrefixId">
+          <ion-select-option value=1>00387 BiH</ion-select-option>
+          <ion-select-option value=2>00385 Hrvatska</ion-select-option>
+          <ion-select-option value=3>00381 Srbija</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-input type="number" placeholder="Broj telefona bez početne nule" formControlName="phone" clearInput>
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Privatam uslove korištenja*</ion-label>
+        <ion-checkbox formControlName="termsAndConditions" color="main"></ion-checkbox>
+      </ion-item>
+      <ion-button class="d-block mx-auto my-1 w-50" shape="round" color="main" [disabled]="registerForm.invalid"
+        (click)="submitForm()">
+        Registruj se
+      </ion-button>
+    </form>
+    <ion-item routerLink="/login" lines="none" detail>
+      <ion-text class="me-1"> Već si član? </ion-text>
+      <ion-text color="main">
+        Prijavi se
+      </ion-text>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -13,7 +13,7 @@
       <ion-button routerLink="/ride-search" routerLinkActive="router-link-active">
         <ion-icon name="search-outline"></ion-icon>
       </ion-button>
-      <ion-button routerLink="/ride-publish" *ngIf="loggedIn">
+      <ion-button routerLink="/user/ride-publish" *ngIf="loggedIn">
         <ion-icon name="add-circle-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -35,33 +35,25 @@
   </ion-content>
   <ion-content class="ion-padding" *ngIf="loggedIn">
     <ion-list>
-      <ion-item (click)="closeMainMenu()" routerLink="/my-profile" detail>
+      <ion-item (click)="closeMainMenu()" routerLink="/user/profile" detail>
         <ion-icon class="me-2" name="person-outline" color="main"></ion-icon>
         <ion-nav-link>Profil</ion-nav-link>
       </ion-item>
-      <ion-item (click)="closeMainMenu()" routerLink="/password-change" detail>
+      <ion-item (click)="closeMainMenu()" routerLink="/user/password-change" detail>
         <ion-icon class="me-2" name="document-lock-outline" color="main"></ion-icon>
         <ion-nav-link>Promjena lozinke</ion-nav-link>
       </ion-item>
-      <ion-item (click)="closeMainMenu()" routerLink="/vehicles" detail>
+      <ion-item (click)="closeMainMenu()" routerLink="user/vehicles" detail>
         <ion-icon class="me-2" name="car-outline" color="main"></ion-icon>
         <ion-nav-link>Vozila</ion-nav-link>
       </ion-item>
-      <ion-item (click)="closeMainMenu()" detail>
-        <ion-icon class="me-2" name="receipt-outline" color="main"></ion-icon>
-        <ion-nav-link>Aktivne vožnje</ion-nav-link>
+      <ion-item (click)="closeMainMenu()" routerLink="user/rides" detail>
+        <ion-icon class="me-2" name="speedometer-outline" color="main"></ion-icon>
+        <ion-nav-link>Vožnje</ion-nav-link>
       </ion-item>
-      <ion-item (click)="closeMainMenu()" detail>
-        <ion-icon class="me-2" name="receipt-outline" color="main"></ion-icon>
-        <ion-nav-link>Prijašnje vožnje</ion-nav-link>
-      </ion-item>
-      <ion-item (click)="closeMainMenu()" detail>
+      <ion-item (click)="closeMainMenu()" routerLink="user/ride-requests" detail>
         <ion-icon class="me-2" name="reader-outline" color="main"></ion-icon>
-        <ion-nav-link>Prijave</ion-nav-link>
-      </ion-item>
-      <ion-item (click)="closeMainMenu()" detail>
-        <ion-icon class="me-2" name="reader-outline" color="main"></ion-icon>
-        <ion-nav-link>Zahtjevi</ion-nav-link>
+        <ion-nav-link>Zahtjevi / prijave</ion-nav-link>
       </ion-item>
       <ion-item (click)="closeMainMenu()" detail>
         <ion-icon class="me-2" name="stats-chart-outline" color="main"></ion-icon>

@@ -1,0 +1,39 @@
+<ion-content>
+  <div class="hero-section ion-padding">
+    <ion-text class="ion-text-center">
+      <h2 class="fw-bold text-white">Više od 10 prilika, putujte s drugima ili ponudite vožnju</h2>
+    </ion-text>
+    <app-ride-search-form class="ride-search-container" (rideSearchFormSubmitted)="onRideSearchFormSubmitted($event)">
+    </app-ride-search-form>
+  </div>
+
+  <div class="ion-padding mt-5">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-text class="ion-text-center">
+            <h2 class="fw-bold">Na koji način funkcioniše Kudćeš.ba?</h2>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let text of reasonsTexts, let i = index">
+        <ion-col>
+          <ion-text color="dark">
+            <ion-icon name="{{text.icon}}" size="large" color="main" class="d-block m-auto">
+            </ion-icon>
+          </ion-text>
+          <ion-text class="ion-text-center" color="dark">
+            <h4 class="fw-bold">{{text.heading}}</h4>
+          </ion-text>
+          <ion-text class="ion-text-center" color="dark">
+            <p>{{text.body}}</p>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <ion-button color="main" shape="round" class="d-block mx-auto mb-4 w-50" routerLink="/user/ride-publish">Ponudi
+    prijevoz
+  </ion-button>
+  <app-footer></app-footer>
+</ion-content>

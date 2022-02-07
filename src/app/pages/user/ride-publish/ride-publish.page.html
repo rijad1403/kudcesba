@@ -1,0 +1,240 @@
+<ion-content>
+  <ion-item lines="none" *ngIf="!pageLoaded">
+    <ion-spinner color="main" class="m-auto mt-4"></ion-spinner>
+  </ion-item>
+
+  <ng-container *ngIf="pageLoaded">
+    <ion-list>
+      <ion-item lines="none">
+        <h2 class="fw-bold">
+          Objava vožnje
+        </h2>
+      </ion-item>
+      <ion-item lines="none" *ngIf="!contentLoaded">
+        <ion-spinner color="main" class="m-auto mt-4"></ion-spinner>
+      </ion-item>
+      <ng-container *ngIf="contentLoaded">
+        <form [formGroup]="newRideForm">
+          <ion-item lines="none">
+            <ion-card class="w-100">
+              <ion-card-content>
+                <agm-map [latitude]="lat" [longitude]="lng">
+                  <agm-direction [visible]="showDirections" [origin]="origin" [destination]="destination"
+                    (onResponse)=" onResponse($event)">
+                  </agm-direction>
+                </agm-map>
+              </ion-card-content>
+              <ion-card-header>
+                <ion-card-subtitle class="ion-text-center" color="dark">Vrijeme putovanja:
+                  <ion-text color="main" class="fw-bold">{{totalTravelDuration}}</ion-text>
+                </ion-card-subtitle>
+                <ion-card-subtitle class="ion-text-center" color="dark">Dužina puta:
+                  <ion-text color="main" class="fw-bold">{{totalTravelDistance}}</ion-text>
+                </ion-card-subtitle>
+              </ion-card-header>
+            </ion-card>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-card class="w-100">
+              <ion-card-content>
+                <ion-slides pager="true">
+                  <ion-slide>
+                    <ion-list>
+                      <ion-item detail (click)="presentModal('start')">
+                        <ion-icon class="me-2" name="location-outline" color="secondary"></ion-icon>
+                        <ion-input type="text" placeholder="Polazište" formControlName="origin" clearInput readonly>
+                        </ion-input>
+                      </ion-item>
+                      <ion-item detail (click)="presentModal('dest')">
+                        <ion-icon class="me-2" name="location-outline" color="main"></ion-icon>
+                        <ion-input type="text" placeholder="Odredište" formControlName="destination" clearInput
+                          readonly>
+                        </ion-input>
+                      </ion-item>
+                      <ion-item detail>
+                        <ion-icon class="me-2" name="calendar-outline" color="secondary"></ion-icon>
+                        <ion-datetime displayFormat="YYYY-MM-DD" placeholder="Datum polaska" doneText="Izaberi"
+                          cancelText="Zatvori" formControlName="date" value="">
+                        </ion-datetime>
+                      </ion-item>
+                      <ion-item detail>
+                        <ion-icon class="me-2" name="time-outline" color="secondary"></ion-icon>
+                        <ion-datetime displayFormat="HH:mm" placeholder="Vrijeme polaska" doneText="Izaberi"
+                          minuteValues="0,15,30,45" cancelText="Zatvori" value="" formControlName="departureTime">
+                        </ion-datetime>
+                      </ion-item>
+                      <ion-item detail class="mb-4">
+                        <ion-icon class="me-2" name="time-outline" color="main"></ion-icon>
+                        <ion-datetime displayFormat="HH:mm" placeholder="Vrijeme dolaska" doneText="Izaberi"
+                          minuteValues="0,15,30,45" cancelText="Zatvori" value="" formControlName="arrivalTime">
+                        </ion-datetime>
+                      </ion-item>
+                    </ion-list>
+                  </ion-slide>
+                  <ion-slide>
+                    <ion-list>
+                      <ion-item>
+                        <ion-icon class="me-2" name="briefcase-outline" color="main"></ion-icon>
+                        <ion-select placeholder="Prtljag" formControlName="luggage" cancelText="nazad">
+                          <ion-select-option [value]="0">
+                            Nije bitno
+                          </ion-select-option>
+                          <ion-select-option [value]="1">
+                            Mali
+                          </ion-select-option>
+                          <ion-select-option [value]="2">
+                            Srednji
+                          </ion-select-option>
+                          <ion-select-option [value]="3">
+                            Veliki
+                          </ion-select-option>
+                        </ion-select>
+                      </ion-item>
+                      <ion-item>
+                        <ion-icon class="me-2" name="car-outline" color="main"></ion-icon>
+                        <ion-select placeholder="Izaberi vozilo" formControlName="vehicle" cancelText="nazad"
+                          interface="popover" (ionChange)="onCarSelect($event)">
+                          <ion-select-option value="newVehicle">Novo vozilo</ion-select-option>
+                          <ion-select-option [value]="vehicle" *ngFor="let vehicle of vehicles">
+                            {{vehicle.manufacturer}}
+                            {{vehicle.model}}
+                          </ion-select-option>
+                        </ion-select>
+                      </ion-item>
+                      <!-- <ion-item>
+                        <ion-icon class="me-2" name="people-outline" color="main"></ion-icon>
+                        <ion-input type="number" placeholder="Broj mjesta" min="1" formControlName="freeSeats"
+                          clearInput>
+                        </ion-input>
+                      </ion-item> -->
+                    </ion-list>
+                  </ion-slide>
+                  <ion-slide>
+                    <ion-list>
+                      <ion-item>
+                        <ion-toggle color=main formControlName="smoking"></ion-toggle>
+                        <ion-label>
+                          Dozvoljeno pušenje
+                        </ion-label>
+                      </ion-item>
+                      <ion-item>
+                        <ion-toggle color=main formControlName="femaleOnly"></ion-toggle>
+                        <ion-label>
+                          Samo za dame
+                        </ion-label>
+                      </ion-item>
+                    </ion-list>
+                  </ion-slide>
+                  <ion-slide>
+                    <ion-list>
+                      <ion-item>
+                        <ion-icon class="me-2" name="cash-outline" color="main"></ion-icon>
+                        <ion-input type="number" placeholder="Cijena" formControlName="price" clearInput>
+                        </ion-input>
+                      </ion-item>
+                      <ion-item>
+                        <ion-label>
+                          <ion-textarea placeholder="Napomena" rows=4 formControlName="note">
+                          </ion-textarea>
+                        </ion-label>
+                      </ion-item>
+                    </ion-list>
+                  </ion-slide>
+                </ion-slides>
+              </ion-card-content>
+            </ion-card>
+          </ion-item>
+          <ion-button type="submit" class="d-block m-auto mt-2 w-50" shape="round" color="main"
+            [disabled]="newRideForm.invalid" (click)="submitForm()">
+            objavi prijevoz
+          </ion-button>
+        </form>
+      </ng-container>
+    </ion-list>
+    <app-footer *ngIf="contentLoaded"></app-footer>
+  </ng-container>
+
+  <!-- <ion-list lines="none">
+    <ion-item>
+      <h2 class="fw-bold text-center">Najbolje u svijetu dijeljenja prijevoza uz Kudces.ba</h2>
+    </ion-item>
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-icon class="d-block m-auto" name="wallet-outline" color="main" size="large"></ion-icon>
+            <h4 class="text-center">Uštedi na putnim troškovima</h4>
+            <p>Podijeli prijevoz s putnicima koji su ti usput i uštedi svaki put kad putuješ automobilom. Prijavi se kao
+              vozač i već danas počni štedjeti na putnim troškovima.</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-icon class="d-block m-auto" name="people-circle-outline" color="main" size="large"></ion-icon>
+            <h4 class="text-center">Pridruži se našoj pouzdanoj zajednici</h4>
+            <p>Poznajemo svakog našeg člana, i vozače i putnike. Provjeravamo ocjene, profile i dokumente tako da i ti
+              točno znaš s kim ćeš putovati.</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-icon class="d-block m-auto" name="rocket-outline" color="main" size="large"></ion-icon>
+            <h4 class="text-center">Jednostavno dijeljenje prijevoza</h4>
+            <p>Naša tehnologija omogućuje da cijelo iskustvo s BlaBlaCarom bude jednostavno, tako da možeš brzo pronaći
+              i upoznati putnike koji su ti usput.</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+
+  <ion-list lines="none">
+    <ion-item>
+      <h2 class="fw-bold text-center">S tobom smo na svakom koraku</h2>
+    </ion-item>
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-icon class="d-block m-auto" name="chatbubbles-outline" color="main" size="large"></ion-icon>
+            <h4 class="text-center">Na usluzi 0 - 24</h4>
+            <p>Podijeli prijevoz s putnicima koji su ti usput i uštedi svaki put kad putuješ automobilom. Prijavi se kao
+              vozač i već danas počni štedjeti na putnim troškovima.</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-icon class="d-block m-auto" name="car-outline" color="main" size="large"></ion-icon>
+            <h4 class="text-center">Kudces.ba je iz tebe</h4>
+            <p>Naša tehnologija omogućuje da cijelo iskustvo s BlaBlaCarom bude jednostavno, tako da možeš brzo pronaći
+              i upoznati putnike koji su ti usput.</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-icon class="d-block m-auto" name="shield-checkmark-outline" color="main" size="large"></ion-icon>
+            <h4 class="text-center">100% sigurni podaci</h4>
+            <p>Poznajemo svakog našeg člana, i vozače i putnike. Provjeravamo ocjene, profile i dokumente tako da i ti
+              točno znaš s kim ćeš putovati.</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list> -->
+</ion-content>

@@ -23,7 +23,9 @@ export class PlacesSearchModalComponent implements OnInit {
   dismiss() {
     this.modalController.dismiss({
       type: this.type,
-      place: null,
+      place: {
+        name: null,
+      },
     });
   }
 

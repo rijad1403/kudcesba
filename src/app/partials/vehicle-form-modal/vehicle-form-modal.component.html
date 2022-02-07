@@ -25,11 +25,12 @@
         </ion-select-option>
       </ion-select>
     </ion-item>
-    <ion-button class="d-block m-auto mt-2 w-50" [disabled]="newVehicleForm.invalid" color="main" shape="round"
+    <ion-button class="d-block mx-auto my-2 w-50" [disabled]="newVehicleForm.invalid" color="main" shape="round"
       (click)="submitForm()">
-      {{vehicle ? 'Ažuriraj': 'Spremi'}}</ion-button>
+      {{vehicle ? 'Ažuriraj': 'Spremi'}}
+    </ion-button>
     <ion-item lines="none" (click)="dismiss(false)">
-      <ion-icon class="me-2" name="chevron-back-outline" color="main"></ion-icon>
+      <ion-icon name="chevron-back-outline" color="main"></ion-icon>
       <ion-text color="main">
         Idi nazad
       </ion-text>

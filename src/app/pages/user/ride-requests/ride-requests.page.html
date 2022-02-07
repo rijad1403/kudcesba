@@ -1,0 +1,91 @@
+<ion-content>
+  <ion-item lines="none" *ngIf="!contentLoaded">
+    <ion-spinner color="main" class="m-auto mt-4"></ion-spinner>
+  </ion-item>
+
+  <ng-container *ngIf="contentLoaded">
+    <ion-list lines="none">
+      <ion-item>
+        <h2 class="fw-bold">{{rideRequestType == 'request' ? 'Zahtjevi': 'Prijave'}}</h2>
+      </ion-item>
+      <ion-item>
+        <ion-segment color="main" (ionChange)="changeRideRequestType($event)" value="request">
+          <ion-segment-button value="request">
+            <ion-label>Zahtjevi</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="application">
+            <ion-label>Prijave</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-item>
+      <ion-item>
+        Prikazano {{rideRequests.length}} od ukupno {{totalRideRequestsCount}} rezultata.
+      </ion-item>
+      <ion-item *ngFor="let rideRequest of rideRequests">
+        <ion-card class="w-100 ion-padding">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-text color="dark" class="fw-bold">
+                  Korisnik: {{rideRequest.user.username}}
+                </ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-text color="dark" class="fw-bold">
+                  Polazište: {{ rideRequest.startLocation.place.name}}
+                </ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-text color="dark" class="fw-bold">
+                  Odredište: {{ rideRequest.endLocation.place.name}}
+                </ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-text color="dark" class="fw-bold">
+                  Vrijeme polaska:
+                  {{rideRequest.departureTime}}
+                </ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-text color="dark" class="fw-bold">
+                  Broj putnika: {{ rideRequest.number}}
+                </ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-text color="dark" class="fw-bold">
+                  Status:
+                </ion-text>
+                <ion-text
+                  [color]="rideRequest.status.id == 10 ? 'success' : (rideRequest.status.id == 11 ? 'danger' : 'warning')"
+                  class="fw-bold">
+                  {{ rideRequest.status.id == 10 ? 'Prihvaćen' : (rideRequest.status.id == 11 ? 'Odbijen' :
+                  'Poništen')}}
+                </ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-button *ngIf="rideRequest.status.id == 10" color="warning" shape="round" class="d-block m-auto w-50"
+            (click)="rideRequestType == 'request' ? reject(rideRequest.id) : cancel(rideRequest.id)">
+            {{rideRequestType == 'request' ? 'Odbij' : 'Otkaži'}}
+          </ion-button>
+        </ion-card>
+      </ion-item>
+      <ion-item>
+        <ion-infinite-scroll *ngIf="showInfiniteScroll" (ionInfinite)="onScroll($event)">
+          <ion-spinner color="main" class="m-auto d-block my-4"></ion-spinner>
+        </ion-infinite-scroll>
+      </ion-item>
+    </ion-list>
+    <app-footer></app-footer>
+  </ng-container>
+</ion-content>

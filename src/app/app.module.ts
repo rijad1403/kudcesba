@@ -10,15 +10,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AuthInterceptor } from './shared/guards/auth-interceptor';
 
-const appInitializerFunction = (envConfigService: EnvironmentconfigService) => {
-  return () => {
-    return envConfigService.load();
-  };
-};
+const appInitializerFunction =
+  (envConfigService: EnvironmentconfigService) => () =>
+    envConfigService.load();
 
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

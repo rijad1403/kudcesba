@@ -1,0 +1,79 @@
+<ion-content>
+  <ion-item lines="none" *ngIf="!pageLoaded">
+    <ion-spinner color="main" class="m-auto mt-4"></ion-spinner>
+  </ion-item>
+
+  <ng-container *ngIf="pageLoaded">
+    <ion-list lines="none">
+      <ion-item>
+        <h2 class="fw-bold">Pretraga vožnji</h2>
+      </ion-item>
+      <ion-item>
+        <app-ride-search-form [rideSearchFormData]="rideSearchFormData"
+          (rideSearchFormSubmitted)="onRideSearchFormSubmitted($event)" style="width: 100%;"></app-ride-search-form>
+      </ion-item>
+      <ion-item lines="none" *ngIf="!contentLoaded">
+        <ion-spinner color="main" class="m-auto mt-4"></ion-spinner>
+      </ion-item>
+      <ng-container *ngIf="contentLoaded">
+        <ion-item lines="none">
+          Dostupno {{rides.length}} vožnji.
+        </ion-item>
+        <ion-item *ngFor="let ride of rides" routerLink="/ride-info/{{ride.id}}">
+          <ion-card class="w-100 ion-padding">
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-text color="dark" class="fw-bold">
+                    Vožnja: {{ ride.origin.name + ' - ' + ride.destination.name }}
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-text color="dark" class="fw-bold">
+                    Cijena: {{ ride.price}} KM
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-text color="dark" class="fw-bold">
+                    Vrijeme polaska: {{ride.departure_date + ' / ' + ride.departure_time }}
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+              <ion-row class="mb-3">
+                <ion-col>
+                  <ion-text color="dark" class="fw-bold">
+                    Vrijeme dolaska: {{ride.arrival_date + ' / ' + ride.arrival_time }}
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+              <ion-row *ngFor="let stop of ride.stops; let first = first; let last = last">
+                <ion-col class="border-start border-dark">
+                  <ion-text class="fw-bold"
+                    [color]="origin?.toLowerCase() == stop.place.name.toLowerCase() ? 'secondary' : destination?.toLowerCase() == stop.place.name.toLowerCase() ? 'danger': 'dark'">
+                    {{stop.place.name}}
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <ion-item>
+              <ion-avatar slot="start">
+                <img src="{{ride.user?.image ? ride.user.image : '../../assets/driver-default.png'}}">
+              </ion-avatar>
+              <ion-label>
+                <h3 class="text-dark fw-bold">{{ride.user.first_name}} {{ride.user.last_name}}</h3>
+                <!-- <p>
+                <ion-icon name="star-outline"></ion-icon> {{ride.user?.rating}}
+              </p> -->
+              </ion-label>
+            </ion-item>
+          </ion-card>
+        </ion-item>
+      </ng-container>
+    </ion-list>
+    <app-footer *ngIf="contentLoaded"></app-footer>
+  </ng-container>
+</ion-content>

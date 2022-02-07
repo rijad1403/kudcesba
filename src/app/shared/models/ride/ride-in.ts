@@ -1,4 +1,3 @@
-import { IPlace } from './place';
 import { IRoute } from './route';
 
 export interface IRideIn {
