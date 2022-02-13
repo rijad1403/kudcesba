@@ -6,15 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
-  footerPages = [];
+  footerLinks = [];
 
   constructor() {}
 
   ngOnInit() {
-    this.footerPages = [
+    this.footerLinks = [
       {
         title: 'O nama',
-        link: 'o-nama',
+        link: 'about',
       },
       {
         title: 'FAQ',
@@ -26,15 +26,19 @@ export class FooterComponent implements OnInit {
       },
       {
         title: 'Privatnost podataka',
-        link: 'privacy-policy',
+        link: 'privacy-data',
+      },
+      {
+        title: 'Tačnost podataka',
+        link: 'data-validation',
       },
       {
         title: 'Kako postaviti oglas',
-        link: 'new-advertisement-help',
+        link: 'new-ride-help',
       },
       {
         title: 'Kako brzo pronaći vožnju',
-        link: 'find-drive-help',
+        link: 'find-ride-help',
       },
       {
         title: 'Blog',

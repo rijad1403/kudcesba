@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import {
-  IRideRequest,
-  IRideRequestIn,
-} from 'src/app/shared/models/ride-request/ride-request';
+import { IRideRequestIn } from 'src/app/shared/models/ride-request/ride-request';
 import { RideRequestService } from 'src/app/shared/services/ride-request.service';
 import { IRide } from '../../shared/models/ride/ride';
 import { RideService } from '../../shared/services/ride.service';
@@ -31,7 +28,6 @@ export class RideInfoPage implements OnInit {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(this.user);
     this.route.params.subscribe((params) => {
       this.rideService.get(+params.rideId).subscribe((data) => {
         this.ride = data;

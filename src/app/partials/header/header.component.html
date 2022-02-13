@@ -2,8 +2,8 @@
   <ion-toolbar color="dark">
     <ion-buttons slot="start">
       <ion-button (click)="openMainMenu()">
-        <ion-icon name="person-outline"></ion-icon>
-        <ion-icon name="chevron-down-outline"></ion-icon>
+        <ion-icon name="person-outline" color="main"></ion-icon>
+        <ion-icon name="chevron-down-outline" color="main"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-buttons>
@@ -11,10 +11,10 @@
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button routerLink="/ride-search" routerLinkActive="router-link-active">
-        <ion-icon name="search-outline"></ion-icon>
+        <ion-icon name="search-outline" color="main"></ion-icon>
       </ion-button>
       <ion-button routerLink="/user/ride-publish" *ngIf="loggedIn">
-        <ion-icon name="add-circle-outline"></ion-icon>
+        <ion-icon name="add-circle-outline" color="main"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

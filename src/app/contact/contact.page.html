@@ -1,0 +1,43 @@
+<ion-content>
+  <ion-list>
+    <ion-item lines="none">
+      <h2 class="fw-bold">Kontaktirajte nas</h2>
+    </ion-item>
+    <form [formGroup]="contactForm">
+      <ion-item>
+        <ion-input type="text" placeholder="Ime" formControlName="name" clearInput></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="email" placeholder="Email" formControlName="email" clearInput></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" placeholder="Predmet" formControlName="subject" clearInput></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-textarea rows="5" placeholder="Poruka" formControlName="message"></ion-textarea>
+      </ion-item>
+      <ion-button class="d-block mx-auto my-1 w-50" shape="round" color="main" [disabled]="contactForm.invalid"
+        (click)="submitForm()">
+        Pošalji
+      </ion-button>
+    </form>
+    <ion-item lines="none">
+      <h2 class="fw-bold">Posjetite nas</h2>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-icon name="location-outline" color="main"></ion-icon>
+      <ion-label class="ms-2">
+        Saliha Udžvarlića 10, Sarajevo 71000
+      </ion-label>
+    </ion-item>
+    <ion-item lines="none">
+      <div class="gmap_canvas">
+        <iframe width="100%" height="100%" id="gmap_canvas"
+          src="https://maps.google.com/maps?q=Saliha%20Ud%C5%BEvarli%C4%87a%2010%20Sarajevo%2071000&t=&z=13&ie=UTF8&iwloc=&output=embed"
+          frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+        </iframe>
+      </div>
+    </ion-item>
+  </ion-list>
+  <app-footer></app-footer>
+</ion-content>
