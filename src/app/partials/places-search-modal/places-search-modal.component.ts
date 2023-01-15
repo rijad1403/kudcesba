@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { PlaceType } from 'src/app/shared/models/ride/place';
 import { PlacesService } from 'src/app/shared/services/places.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { PlacesService } from 'src/app/shared/services/places.service';
   styleUrls: ['./places-search-modal.component.scss'],
 })
 export class PlacesSearchModalComponent implements OnInit {
-  @Input() type: string;
+  @Input() placeType: PlaceType;
   placeInput = '';
   places: any = [];
   contentLoaded = true;
@@ -22,7 +23,6 @@ export class PlacesSearchModalComponent implements OnInit {
 
   dismiss() {
     this.modalController.dismiss({
-      type: this.type,
       place: {
         name: null,
       },
@@ -31,7 +31,6 @@ export class PlacesSearchModalComponent implements OnInit {
 
   dismissAndSendData(place: any) {
     this.modalController.dismiss({
-      type: this.type,
       place,
     });
   }

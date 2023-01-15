@@ -1,5 +1,5 @@
 <ion-content>
-  <ion-item class="mt-3" lines="none" detail>
+  <ion-item class="mt-3" lines="none">
     <ion-avatar slot="end">
       <img class=""
         [src]="user.image_url ? 'https://kudcesba.24vakta.ba'+user.image_url : '../../../../assets/driver-default.png'">
@@ -13,8 +13,11 @@
     <ion-item lines="none">
       <ion-icon name="add-circle-outline" color="main"></ion-icon>
       <ion-label class="ms-2">
-        Dodaj profilnu sliku
+        Promjeni profilnu sliku
       </ion-label>
+      <input type="file" name="file" #file accept="image/png, image/jpeg, image/jpg"
+        (change)="filesLength = file.files.length">
+      <ion-button (click)="updateProfileImage()" [disabled]="filesLength !== 1">Upload</ion-button>
     </ion-item>
     <ion-item routerLink="/user/personal-info">
       <ion-icon name="create-outline" color="secondary"></ion-icon>

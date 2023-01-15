@@ -21,6 +21,7 @@
     "@angular/platform-browser": "~11.2.0",
     "@angular/platform-browser-dynamic": "~11.2.0",
     "@angular/router": "~11.2.0",
+    "@googlemaps/polyline-codec": "^1.0.24",
     "@ionic/angular": "^5.5.2",
     "agm-direction": "^0.8.9",
     "bootstrap": "^5.0.1",

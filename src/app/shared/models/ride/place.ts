@@ -1,8 +1,9 @@
 export interface IPlace {
+  id?: number | string;
   sortKey?: number;
   name: string;
-  latitude: string;
-  longitude: string;
+  latitude: string | number;
+  longitude: string | number;
   population: number;
   hours?: number;
   minutes?: number;
@@ -10,4 +11,11 @@ export interface IPlace {
   distance?: number;
   duration?: number;
   nextDay?: boolean;
+  dateString?: string;
+}
+
+export enum PlaceType {
+  origin = 'origin',
+  destination = 'destination',
+  waypoint = 'waypoint',
 }

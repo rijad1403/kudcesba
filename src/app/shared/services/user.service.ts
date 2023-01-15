@@ -77,4 +77,8 @@ export class UserService {
       passwordUpdate
     );
   }
+
+  updateProfileImage(formData: FormData): Observable<any> {
+    return this.httpClient.post(`${this.config.apiUrl}/user/upload`, formData);
+  }
 }

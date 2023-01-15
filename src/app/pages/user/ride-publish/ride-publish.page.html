@@ -20,16 +20,18 @@
               <ion-card-content>
                 <agm-map [latitude]="lat" [longitude]="lng">
                   <agm-direction [visible]="showDirections" [origin]="origin" [destination]="destination"
-                    (onResponse)=" onResponse($event)">
+                    [waypoints]="waypoints" (onResponse)="onResponse($event)">
                   </agm-direction>
                 </agm-map>
               </ion-card-content>
               <ion-card-header>
                 <ion-card-subtitle class="ion-text-center" color="dark">Vrijeme putovanja:
-                  <ion-text color="main" class="fw-bold">{{totalTravelDuration}}</ion-text>
+                  <ion-text color="main" class="fw-bold">{{totalTravelHours ? totalTravelHours : 0}}h
+                    {{totalTravelMinutes ? totalTravelMinutes : 0}}m
+                  </ion-text>
                 </ion-card-subtitle>
                 <ion-card-subtitle class="ion-text-center" color="dark">Dužina puta:
-                  <ion-text color="main" class="fw-bold">{{totalTravelDistance}}</ion-text>
+                  <ion-text color="main" class="fw-bold">{{totalTravelDistance ? totalTravelDistance : 0}} km</ion-text>
                 </ion-card-subtitle>
               </ion-card-header>
             </ion-card>
@@ -40,34 +42,92 @@
                 <ion-slides pager="true">
                   <ion-slide>
                     <ion-list>
-                      <ion-item detail (click)="presentModal('start')">
+                      <ion-item>
+                        <ion-item>
+                          <ion-label>Ponavljajuća vožnja</ion-label>
+                          <ion-toggle color="main" (ionChange)="changeRideType($event)"></ion-toggle>
+                        </ion-item>
+                      </ion-item>
+                      <ion-item class="mb-4" *ngIf="oneTimeRide" detail>
+                        <ion-icon class="me-2" name="calendar-outline" color="secondary"></ion-icon>
+                        <ion-datetime displayFormat="YYYY-MM-DD" placeholder="Datum polaska" doneText="Izaberi"
+                          cancelText="Zatvori" formControlName="date" value="">
+                        </ion-datetime>
+                      </ion-item>
+                      <ion-item class="mb-4" *ngIf="!oneTimeRide" detail>
+                        <ion-icon class="me-2" name="calendar-outline" color="secondary"></ion-icon>
+                        <ion-select placeholder="Izaberi dane" cancelText="nazad"
+                          [selectedText]="selectedDays?.length > 0 ? selectedDays.length + ' dan(a)' : null" multiple
+                          (ionChange)="onDaySelect($event)">
+                          <ion-select-option *ngFor="let day of days">
+                            {{day}}
+                          </ion-select-option>
+                        </ion-select>
+                      </ion-item>
+                      <ion-item detail (click)="presentModal(placeType.origin)">
                         <ion-icon class="me-2" name="location-outline" color="secondary"></ion-icon>
                         <ion-input type="text" placeholder="Polazište" formControlName="origin" clearInput readonly>
                         </ion-input>
                       </ion-item>
-                      <ion-item detail (click)="presentModal('dest')">
+                      <ion-item class="mb-4" detail>
+                        <ion-icon class="me-2" name="time-outline" color="secondary"></ion-icon>
+                        <ion-datetime displayFormat="HH:mm" placeholder="Vrijeme polaska" doneText="Izaberi"
+                          minuteValues="0,15,30,45" cancelText="Zatvori" value="" formControlName="departureTime"
+                          (ionChange)="setNextDayCheckboxes($event, -1)">
+                        </ion-datetime>
+                      </ion-item>
+                      <div class="my-4" *ngIf="rideWaypoints">
+                        <ion-icon name="ellipsis-vertical" color="medium" size="large">
+                        </ion-icon>
+                        <div *ngFor="let waypoint of rideWaypoints; index as index" class="border rounded-3 mb-2">
+                          <ion-item lines="none">
+                            <ion-icon slot="end" name="close-circle-outline" color="danger"
+                              (click)="removeWaypoint(waypoint)">
+                            </ion-icon>
+                          </ion-item>
+                          <ion-item lines="none" detail (click)="presentModal(placeType.waypoint)">
+                            <ion-icon class="me-2" name="location-outline" color="medium"></ion-icon>
+                            <ion-input type="text" placeholder="Putna tačka" value="{{waypoint.name}}" clearInput
+                              readonly>
+                            </ion-input>
+                          </ion-item>
+                          <ion-item lines="none">
+                            <ion-icon class="me-2" name="time-outline" color="medium"></ion-icon>
+                            <ion-datetime displayFormat="HH:mm" placeholder="Vrijeme" doneText="Izaberi"
+                              minuteValues="0,15,30,45" cancelText="Zatvori" value="{{waypoint.dateString}}"
+                              (ionChange)="setNextDayCheckboxes($event, index)">
+                            </ion-datetime>
+                          </ion-item>
+                          <ion-item lines="none">
+                            <ion-label>Sljedeći dan</ion-label>
+                            <ion-checkbox color="main" slot="end" checked="{{ waypoint.nextDay }}"
+                              (ionChange)="onNextDayChange($event, index)"></ion-checkbox>
+                          </ion-item>
+                        </div>
+                        <ion-button class="d-block mx-auto mb-2" color="main" shape="round"
+                          (click)="presentModal(placeType.waypoint)">
+                          Nova putna tačka
+                        </ion-button>
+                        <ion-icon name="ellipsis-vertical" color="medium" size="large">
+                        </ion-icon>
+                      </div>
+                      <ion-item detail (click)="presentModal(placeType.destination)">
                         <ion-icon class="me-2" name="location-outline" color="main"></ion-icon>
                         <ion-input type="text" placeholder="Odredište" formControlName="destination" clearInput
                           readonly>
                         </ion-input>
                       </ion-item>
                       <ion-item detail>
-                        <ion-icon class="me-2" name="calendar-outline" color="secondary"></ion-icon>
-                        <ion-datetime displayFormat="YYYY-MM-DD" placeholder="Datum polaska" doneText="Izaberi"
-                          cancelText="Zatvori" formControlName="date" value="">
-                        </ion-datetime>
-                      </ion-item>
-                      <ion-item detail>
-                        <ion-icon class="me-2" name="time-outline" color="secondary"></ion-icon>
-                        <ion-datetime displayFormat="HH:mm" placeholder="Vrijeme polaska" doneText="Izaberi"
-                          minuteValues="0,15,30,45" cancelText="Zatvori" value="" formControlName="departureTime">
-                        </ion-datetime>
-                      </ion-item>
-                      <ion-item detail class="mb-4">
                         <ion-icon class="me-2" name="time-outline" color="main"></ion-icon>
                         <ion-datetime displayFormat="HH:mm" placeholder="Vrijeme dolaska" doneText="Izaberi"
-                          minuteValues="0,15,30,45" cancelText="Zatvori" value="" formControlName="arrivalTime">
+                          minuteValues="0,15,30,45" cancelText="Zatvori" value="" formControlName="arrivalTime"
+                          (ionChange)="setNextDayCheckboxes($event, -2)">
                         </ion-datetime>
+                      </ion-item>
+                      <ion-item class="mb-4">
+                        <ion-label>Sljedeći dan</ion-label>
+                        <ion-checkbox color="main" slot="end" formControlName="nextDay"
+                          (ionChange)="onNextDayChange($event, -2)"></ion-checkbox>
                       </ion-item>
                     </ion-list>
                   </ion-slide>
@@ -93,20 +153,49 @@
                       <ion-item>
                         <ion-icon class="me-2" name="car-outline" color="main"></ion-icon>
                         <ion-select placeholder="Izaberi vozilo" formControlName="vehicle" cancelText="nazad"
-                          interface="popover" (ionChange)="onCarSelect($event)">
-                          <ion-select-option value="newVehicle">Novo vozilo</ion-select-option>
-                          <ion-select-option [value]="vehicle" *ngFor="let vehicle of vehicles">
+                          (ionChange)="onCarSelect($event)" [(ngModel)]="selectedVehicle">
+                          <ion-select-option c [value]="vehicle" *ngFor="let vehicle of vehicles">
                             {{vehicle.manufacturer}}
                             {{vehicle.model}}
                           </ion-select-option>
                         </ion-select>
                       </ion-item>
-                      <!-- <ion-item>
-                        <ion-icon class="me-2" name="people-outline" color="main"></ion-icon>
-                        <ion-input type="number" placeholder="Broj mjesta" min="1" formControlName="freeSeats"
-                          clearInput>
-                        </ion-input>
-                      </ion-item> -->
+                      <ion-button class="d-block mx-auto my-2" color="main" shape="round"
+                        (click)="openNewVehicleContainer()">
+                        Novo vozilo
+                      </ion-button>
+                      <ng-container *ngIf="selectedVehicle">
+                        <ion-item>
+                          <ion-input type="text" placeholder="Proizvođač" [value]="selectedVehicle.manufacturer"
+                            [readonly]="selectedVehicle.id > 0" clearInput>
+                          </ion-input>
+                        </ion-item>
+                        <ion-item>
+                          <ion-input type="text" placeholder="Model" [value]="selectedVehicle.model"
+                            [readonly]="selectedVehicle.id > 0" clearInput>
+                          </ion-input>
+                        </ion-item>
+                        <ion-item>
+                          <ion-input type="text" placeholder="Boja" [value]="selectedVehicle.color"
+                            [readonly]="selectedVehicle.id > 0" clearInput>
+                          </ion-input>
+                        </ion-item>
+                        <ion-item>
+                          <ion-input type="number" placeholder="Broj sjedala" [value]="selectedVehicle.seats"
+                            [readonly]="selectedVehicle.id > 0" clearInput>
+                          </ion-input>
+                        </ion-item>
+                        <ion-item class="mb-5">
+                          <ion-select *ngIf="selectedVehicle.id < 1" placeholder="Izaberi" cancelText="nazad">
+                            <ion-select-option [value]="vehicleType.id" *ngFor="let vehicleType of vehicleTypes">
+                              {{vehicleType.caption}}
+                            </ion-select-option>
+                          </ion-select>
+                          <ion-input *ngIf="selectedVehicle.id > 0" type="text" placeholder="Tip vozila"
+                            [value]="selectedVehicleType.caption" readonly clearInput>
+                          </ion-input>
+                        </ion-item>
+                      </ng-container>
                     </ion-list>
                   </ion-slide>
                   <ion-slide>

@@ -29,7 +29,7 @@ import { AgmDirectionModule } from 'agm-direction';
     IonicModule.forRoot(),
     FormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAkhb5VWwXrBNr9W8cmWdMufQfNdEQYlgc',
+      apiKey: 'AIzaSyDd-HZ-Kcu_0BNh9tK42jgdgGzdAJYgz4s',
     }),
     AgmDirectionModule,
   ],

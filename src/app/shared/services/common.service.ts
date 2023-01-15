@@ -18,4 +18,11 @@ export class CommonService {
   getPhonePrefixes(): Observable<any[]> {
     return this.http.get<any[]>(`${this.config.apiUrl}/common/phone-prefixes`);
   }
+
+  getRideWaypoints(formData: FormData): Observable<any[]> {
+    return this.http.post<any[]>(
+      `${this.config.apiUrl}/common/drive-waypoints`,
+      formData
+    );
+  }
 }
